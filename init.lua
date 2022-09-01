@@ -1,0 +1,2 @@
+require("szymon")
+print("test")
