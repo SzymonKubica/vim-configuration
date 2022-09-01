@@ -1,3 +1,6 @@
+-- Version of 01.09.2022
+-- keymap.lua defines utilities to make remapping keys easier.
+
 local M = {}
 
 local function bind(op, outer_opts)

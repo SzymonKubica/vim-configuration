@@ -1,2 +1,1 @@
 require("szymon")
-print("test")

@@ -1,39 +1,38 @@
+-- Version of 01.09.2022
+-- set.lua contains all general vim settings.
 
--- When starting up vim using 'vim .' executes the vimrc file present in
--- that directory
-vim.opt.exrc = true
-
-
--- Shows the current line number instead of 0
-vim.opt.nu = true
+-- Line Numbers Settings -------------------------------------------------------
 vim.opt.relativenumber = true
+vim.opt.nu = true -- Shows the current line number instead of 0.
 
-vim.opt.hlsearch = false
-
--- Indentation 
-vim.opt.smartindent = false
-vim.opt.smarttab = false
+-- Indentation Settings --------------------------------------------------------
+vim.opt.smartindent = true
+vim.opt.smarttab = true
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
-vim.opt.wrap = false
-
--- Allows keeping files open in the buffer even if they aren't currently viewed
-vim.opt.hidden = true
-
-
+-- Search Settings -------------------------------------------------------------
 vim.opt.incsearch  = true
+vim.opt.hlsearch = false
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
-
--- Setup swap file behaviour and undo history
+-- Swap Files and Undo History -------------------------------------------------
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = ".vim/undodir"
 vim.opt.undofile = true
 
--- Sets the leader key for remapping to be the space key.
-vim.g.mapleader = " "
+-- Visual Indicators -----------------------------------------------------------
+vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "80"
+
+-- Miscellaneous ---------------------------------------------------------------
+vim.opt.exrc = true -- sources init.lua if present in the current working dir.
+
+vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
+
+vim.opt.scrolloff = 8
+vim.opt.wrap = false
 
