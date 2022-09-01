@@ -1,4 +1,4 @@
--- Version of 01.09.2022
+-- Version of 01.09.2022.
 -- packer.lua specifies all plugins.
 
 vim.cmd [[packadd packer.nvim]]
