@@ -10,4 +10,6 @@ return require('packer').startup(function(use)
 	use 'SirVer/ultisnips'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim' -- Dependency for telescope
+	use 'nvim-treesitter/nvim-treesitter'
+	use 'mbbill/undotree'
 end)

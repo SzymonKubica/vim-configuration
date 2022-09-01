@@ -10,6 +10,9 @@ nnoremap("<leader>pv", "<cmd>Ex<CR>") -- Exit to the directory view.
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
 
+-- UndoTree Keybindings --------------------------------------------------------
+nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
+
 -- Telescope Keybindings -------------------------------------------------------
 nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
