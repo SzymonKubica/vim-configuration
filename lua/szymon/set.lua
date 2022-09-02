@@ -1,4 +1,4 @@
--- Version of 01.09.2022.
+-- Version of 02.09.2022.
 -- set.lua contains all general vim settings.
 
 -- Line Numbers Settings -------------------------------------------------------
@@ -17,6 +17,13 @@ vim.opt.incsearch  = true
 vim.opt.hlsearch = false
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
+
+-- Netrw Settings --------------------------------------------------------------
+vim.g.netrw_keepdir = 0 -- Keeps the current dir and browsing dir in sync
+vim.g.netrw_winsize = 30
+vim.g.netrw_banner = 0 -- Hides the banner
+vim.g.netrw_localcopydircmd = 'cp -r' -- Allows for recursive copying of dirs.
+vim.cmd[[hi! link netrwMarkFile Search]] -- Highlights marked files
 
 -- Swap Files and Undo History -------------------------------------------------
 vim.opt.swapfile = false

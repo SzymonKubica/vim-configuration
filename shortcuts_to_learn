@@ -1,0 +1,35 @@
+List of commands to get into muscle memory:
+
+<Ctrl> U -> move half page up
+
+<Ctrl> D -> move half page down
+
+
+Switching files:
+
+<Ctrl> ^ -> move to the previously open file
+
+Setting marks using m and then going back to them using '+setter
+
+<Ctrl> w + v/s open a vertical/horizontal split
+
+<Ctrl> w + = -> equalize the width and height of all open windows
+<Ctrl> w + </> resize width of vertical windows
+<Ctrl> w + -/+ resize height of horizontal windows
+
+Netrw commands:
+
+p -> open a preview window
+<C-w> z -> close the preview window
+
+% -> create a new file
+R -> rename a file
+
+mt -> mark a directory as target for copying/moving
+mf -> marks a file or directory for bulk copying/deletion
+
+mc -> copy the marked files to the target dir
+mm -> move the marked files to the target dir
+
+D -> deletes a file
+d -> creates a directory
