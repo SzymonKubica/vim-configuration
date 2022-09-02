@@ -4,10 +4,7 @@ List of commands to get into muscle memory:
 
 <Ctrl> D -> move half page down
 
-
 Switching files:
-
-<Ctrl> ^ -> move to the previously open file
 
 Setting marks using m and then going back to them using '+setter
 
@@ -20,16 +17,16 @@ Setting marks using m and then going back to them using '+setter
 Netrw commands:
 
 p -> open a preview window
-<C-w> z -> close the preview window
+P -> close the preview window
 
 % -> create a new file
 R -> rename a file
 
-mt -> mark a directory as target for copying/moving
-mf -> marks a file or directory for bulk copying/deletion
+fc -> copy the marked files to the target dir
+fm -> move the marked files to the target dir
 
-mc -> copy the marked files to the target dir
-mm -> move the marked files to the target dir
+fC -> mark the current dir as target and copy marked files to it
+fM -> mark the current dir as target and move marked files to it
 
 D -> deletes a file
 d -> creates a directory

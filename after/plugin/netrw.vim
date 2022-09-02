@@ -1,6 +1,7 @@
 function! NetrwMapping()
 	nmap <buffer> l <CR>
 	nmap <buffer> h -^
+	nmap <buffer> n %
   nmap <buffer> . gh
   nmap <buffer> P <C-w>z
   nmap <buffer> L <CR>:Lexplore<CR>
