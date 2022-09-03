@@ -1,1 +1,1 @@
-require("szymon")
+-- Version of 03.09.2022.

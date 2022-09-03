@@ -28,7 +28,7 @@ vim.cmd[[hi! link netrwMarkFile Search]] -- Highlights marked files
 -- Swap Files and Undo History -------------------------------------------------
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = ".vim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 -- Visual Indicators -----------------------------------------------------------
