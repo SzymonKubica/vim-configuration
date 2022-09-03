@@ -1,4 +1,4 @@
---
+-- Version of 03.09.2022.
 -- Add additional capabilities supported by nvim-cmp
 --
 local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -1,4 +1,4 @@
--- Version of 02.09.2022.
+-- Version of 03.09.2022.
 -- set.lua contains all general vim settings.
 
 -- Line Numbers Settings -------------------------------------------------------

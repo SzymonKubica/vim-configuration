@@ -10,7 +10,7 @@ Setting marks using m and then going back to them using '+setter
 
 <Ctrl> w + v/s open a vertical/horizontal split
 
-<Ctrl> w + = -> equalize the width and height of all open windows
+<Ctrl> w + =   equalize the width and height of all open windows
 <Ctrl> w + </> resize width of vertical windows
 <Ctrl> w + -/+ resize height of horizontal windows
 

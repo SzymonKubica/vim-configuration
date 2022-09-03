@@ -1,4 +1,4 @@
--- Version of 02.09.2022.
+-- Version of 03.09.2022.
 -- remap.lua specifies all keybindings.
 
 local nnoremap = require("szymon.keymap").nnoremap
@@ -25,7 +25,7 @@ nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 nnoremap("<leader>ps", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<cr>")
 
--- Code completion -------------------------------------------------------------
+-- LSP Shortcuts ---------------------------------------------------------------
 nnoremap_silent('<space>e', vim.diagnostic.open_float)
 nnoremap_silent('[d', vim.diagnostic.goto_prev)
 nnoremap_silent(']d', vim.diagnostic.goto_next)

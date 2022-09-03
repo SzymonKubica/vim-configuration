@@ -1,4 +1,4 @@
--- Version of 02.09.2022.
+-- Version of 03.09.2022.
 -- init.lua resolves all configuration dependencies.
 require("szymon.set")
 require("szymon.remap")
