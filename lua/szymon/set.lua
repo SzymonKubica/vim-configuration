@@ -35,6 +35,11 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 
+-- Code Completion Settings ----------------------------------------------------
+vim.g.completion_enable_fuzzy_match = 1
+vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.wildmenu = true
+
 -- Miscellaneous ---------------------------------------------------------------
 vim.opt.exrc = true -- sources init.lua if present in the current working dir.
 

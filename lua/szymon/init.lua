@@ -3,3 +3,4 @@
 require("szymon.set")
 require("szymon.remap")
 require("szymon.autocmd")
+require("szymon.autocompletion")
