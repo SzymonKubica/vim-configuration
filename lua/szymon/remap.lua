@@ -8,7 +8,7 @@ local nmap = require("szymon.keymap").nmap
 
 vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
--- Show filed directory in tree view.
+-- Show files directory in tree view.
 nnoremap("<leader>sd", "<cmd> Lexplore <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
@@ -20,6 +20,7 @@ nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
 
 -- Telescope Keybindings -------------------------------------------------------
 nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nnoremap("<leader>fp", "<cmd>Telescope git_files<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
