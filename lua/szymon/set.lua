@@ -47,4 +47,3 @@ vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
 
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
-
