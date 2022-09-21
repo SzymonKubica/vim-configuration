@@ -23,9 +23,6 @@ rt.setup({
 })
 
 local on_attach = function(client)
-      -- Activate completion
-      require'completion'.on_attach(client)
-
       -- Mappings
       nnoremap('<c-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>')
       nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
