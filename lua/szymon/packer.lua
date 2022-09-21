@@ -20,6 +20,7 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 	-- Plugins for rust
 	use 'simrat39/rust-tools.nvim'
+	-- Plugins for haskell
 	use {
   'filipdutescu/renamer.nvim',
   branch = 'master',
