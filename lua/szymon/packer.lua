@@ -7,7 +7,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'folke/tokyonight.nvim'
 	use 'lervag/vimtex'
-	use 'SirVer/ultisnips'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim' -- Dependency for telescope
 	use 'nvim-treesitter/nvim-treesitter'
@@ -21,4 +20,9 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 	-- Plugins for rust
 	use 'simrat39/rust-tools.nvim'
+	use {
+  'filipdutescu/renamer.nvim',
+  branch = 'master',
+  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 end)
