@@ -1,4 +1,4 @@
--- Version of 05.09.2022.
+-- Version of 21.09.2022.
 -- Add additional capabilities supported by nvim-cmp
 
 local nnoremap = require("szymon.keymap").nnoremap

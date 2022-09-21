@@ -1,4 +1,4 @@
--- Version of 03.09.2022.
+-- Version of 12.09.2022.
 -- keymap.lua defines utilities to make remapping keys easier.
 
 local M = {}
