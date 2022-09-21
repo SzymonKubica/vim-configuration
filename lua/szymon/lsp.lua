@@ -1,6 +1,8 @@
 -- Version of 05.09.2022.
 -- Add additional capabilities supported by nvim-cmp
---
+
+local nnoremap = require("szymon.keymap").nnoremap
+local inoremap = require("szymon.keymap").inoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
@@ -20,12 +22,39 @@ rt.setup({
   },
 })
 
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local on_attach = function(client)
+      -- Activate completion
+      require'completion'.on_attach(client)
+
+      -- Mappings
+      nnoremap('<c-]>', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+      nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+      nnoremap('gd', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
+      nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+      nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+      nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+      nnoremap('<leader>ls', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+      inoremap('<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+
+      -- autoformat only for haskell
+      if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
+          vim.api.nvim_command[[
+              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+      end
+end
+
+-- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
+		on_attach = on_attach,
     capabilities = capabilities,
+		settings = {
+			haskell = {
+					hlintOn = true,
+					formattingProvider = "fourmolu"
+			}
+		}
   }
 end
 
