@@ -1,4 +1,4 @@
--- Version of 07.09.2022.
+-- Version of 22.09.2022.
 -- set.lua contains all general vim settings.
 
 -- Line Numbers Settings -------------------------------------------------------
@@ -11,6 +11,7 @@ vim.opt.smarttab = true
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- Search Settings -------------------------------------------------------------
 vim.opt.incsearch  = true
