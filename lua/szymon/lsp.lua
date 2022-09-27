@@ -10,8 +10,6 @@ local lspconfig = require('lspconfig')
 
 -- Enable lua lsp server.
 
-require'lspconfig'.sumneko_lua.setup {}
-
 -- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
 local rt = require("rust-tools")
 
@@ -43,7 +41,7 @@ local on_attach = function(client)
 end
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls' }
+local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
 		on_attach = on_attach,
@@ -52,7 +50,31 @@ for _, lsp in ipairs(servers) do
 			haskell = {
 					hlintOn = true,
 					formattingProvider = "fourmolu"
-			}
+			},
+      Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'Lua 5.4.4',
+        -- Setup your lua path
+        path = '/usr/bin/lua',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+          vim.fn.expand('$VIMRUNTIME/lua'),
+          vim.fn.stdpath('config') .. '/lua'
+        }
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+
 		}
   }
 end
