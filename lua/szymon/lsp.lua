@@ -8,6 +8,10 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lspconfig = require('lspconfig')
 
+-- Enable lua lsp server.
+
+require'lspconfig'.sumneko_lua.setup {}
+
 -- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
 local rt = require("rust-tools")
 
