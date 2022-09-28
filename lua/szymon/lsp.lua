@@ -54,7 +54,7 @@ for _, lsp in ipairs(servers) do
       Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'Lua 5.4.4',
+        version = 'LuaJIT',
         -- Setup your lua path
         path = '/usr/bin/lua',
       },
@@ -66,7 +66,8 @@ for _, lsp in ipairs(servers) do
         library = {
           vim.fn.expand('$VIMRUNTIME/lua'),
           vim.fn.stdpath('config') .. '/lua'
-        }
+        },
+        checkThridParty = false
       },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
