@@ -30,3 +30,5 @@ fM -> mark the current dir as target and move marked files to it
 
 D -> deletes a file
 d -> creates a directory
+
+Master search and replace.
