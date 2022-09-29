@@ -20,7 +20,6 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 
 -- Netrw Settings --------------------------------------------------------------
-vim.g.netrw_keepdir = 0 -- Keeps the current dir and browsing dir in sync
 vim.g.netrw_winsize = 30
 vim.g.netrw_banner = 0 -- Hides the banner
 vim.g.netrw_localcopydircmd = 'cp -r' -- Allows for recursive copying of dirs.
