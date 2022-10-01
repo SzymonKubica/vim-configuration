@@ -12,13 +12,10 @@ local nmap = require("szymon.keymap").nmap
 vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
 -- Show files directory in tree view.
-nnoremap("<leader>sd", "<cmd> NERDTreeToggle <CR>")
+nnoremap("<leader>sd", "<cmd> NERDTreeToggle % <CR>")
+nnoremap("<leader> f", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
-
--- NerdTree create new file mapping
-
-nnoremap("<leader> n", "cd <cmd> e")
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
 
