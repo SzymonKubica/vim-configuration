@@ -48,3 +48,8 @@ vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
 
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
+
+vim.g.NERDTreeMapCustomOpen = "L"
+vim.g.NERDTreeMinimalUI = 1 -- Removes the help prompt
+vim.g.NERDTreeMapChangeRoot = "l"
+vim.g.NERDTreeMapUpdir = "h"
