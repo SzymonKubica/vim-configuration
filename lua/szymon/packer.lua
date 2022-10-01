@@ -18,8 +18,11 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  use 'preservim/nerdtree' -- Nerdtree plugin
+  -- Plugins for nerdtree
+  use 'preservim/nerdtree'
   use 'PhilRunninger/nerdtree-visual-selection' -- Filesystem operations for nerdtree
+  use 'ryanoasis/vim-devicons'
+  use 'Xuyuanp/nerdtree-git-plugin'
 	-- Plugins for rust
 	use 'simrat39/rust-tools.nvim'
 	-- Plugins for haskell
