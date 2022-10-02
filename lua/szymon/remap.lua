@@ -13,7 +13,7 @@ vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
 -- Show files directory in tree view.
 nnoremap("<leader>sd", "<cmd> NERDTreeToggle % <CR>")
-nnoremap("<leader> m", "<cmd> only <CR>")
+nnoremap("<leader>m", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
