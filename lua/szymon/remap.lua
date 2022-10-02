@@ -13,9 +13,13 @@ vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
 -- Show files directory in tree view.
 nnoremap("<leader>sd", "<cmd> NERDTreeToggle % <CR>")
+
+-- Make the current buffer fullscreen and hid all other buffers
 nnoremap("<leader>m", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
+
+nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
 
@@ -27,8 +31,8 @@ xnoremap("<leader>p", "\"_dP")
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
 
 -- Telescope Keybindings -------------------------------------------------------
-nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
-nnoremap("<leader>fp", "<cmd>Telescope git_files<cr>")
+nnoremap("<leader>ff", "<cmd>only | Telescope find_files<cr>")
+nnoremap("<leader>fp", "<cmd>only | Telescope git_files<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
