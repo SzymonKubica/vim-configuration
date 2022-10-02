@@ -1,4 +1,4 @@
--- Version of 21.09.2022.
+-- Version of 02.10.2022.
 -- remap.lua specifies all keybindings.
 
 local nnoremap = require("szymon.keymap").nnoremap
