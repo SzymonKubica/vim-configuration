@@ -2,6 +2,7 @@ function! NERDTreeMapping()
 	nmap <buffer> n cd :only <CR> :enew <CR>
   nmap <buffer> d V d
   nmap <buffer> r cd 0 /\<\a/><CR>"+y$ :!mv <c-r>+
+  nmap <buffer> D cd :!mkdir
 endfunction
 
 augroup nerdtree_mapping
