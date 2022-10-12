@@ -52,29 +52,31 @@ for _, lsp in ipairs(servers) do
 					formattingProvider = "fourmolu"
 			},
       Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = '/usr/bin/lua',
-      },
-      diagnostics = {
-        globals = {'vim', 'awesome'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = {
-          vim.fn.expand('$VIMRUNTIME/lua'),
-          vim.fn.stdpath('config') .. '/lua'
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = '/usr/bin/lua',
         },
-        checkThridParty = false
+        diagnostics = {
+          globals = {'vim', 'awesome'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            vim.fn.expand('$VIMRUNTIME/lua'),
+            vim.fn.stdpath('config') .. '/lua'
+          },
+          checkThridParty = false
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
       },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-
+      cpp = {
+        cmd = { "clangd", '--background-index', '--clang-tidy' }
+      }
 		}
   }
 end
