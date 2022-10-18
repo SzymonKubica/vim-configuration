@@ -16,6 +16,9 @@ vim.g.UltiSnipsExpandTrigger = '<tab>'
 vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
 vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
+-- Smooth Scrolling ------------------------------------------------------------
+require('neoscroll').setup()
+
 -- Treesitter Configuration ----------------------------------------------------
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
