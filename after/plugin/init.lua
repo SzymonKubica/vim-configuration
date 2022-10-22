@@ -22,7 +22,7 @@ require('neoscroll').setup()
 -- Treesitter Configuration ----------------------------------------------------
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "python", "java", "haskell" },
+  ensure_installed = { "c", "cpp", "lua", "rust", "python", "java", "haskell" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -39,7 +39,7 @@ require'nvim-treesitter.configs'.setup {
 
 
 		-- List of parsers to disable the extension for
-    disable = { "c" },
+    disable = {  },
 
     additional_vim_regex_highlighting = false,
   },
