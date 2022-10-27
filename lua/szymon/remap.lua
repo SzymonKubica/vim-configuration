@@ -20,7 +20,8 @@ nnoremap("<leader>m", "<cmd> only <CR>")
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
 -- Enters zen mode on big monitor
-nnoremap("<leader>z", "<C-w>v<C-w>35< <cmd> e blank <CR><C-w>l") -- Makes jumping back to the prev file easier
+-- Need to open and close nerdtree to avoid misallignments
+nnoremap("<leader>z", "<C-w>v <cmd> e blank <CR><C-w>l <cmd> NERDTreeToggle % <CR><C-w>2l <C-w>40>")
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
