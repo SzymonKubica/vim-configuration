@@ -53,3 +53,4 @@ vim.g.NERDTreeMapCustomOpen = "L"
 vim.g.NERDTreeMinimalUI = 1 -- Removes the help prompt
 vim.g.NERDTreeMapChangeRoot = "l"
 vim.g.NERDTreeMapUpdir = "h"
+
