@@ -19,6 +19,10 @@ nnoremap("<leader>m", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
+-- Make jumping up/down half a page more ergonomic.
+-- Ctrl+d for down Ctrl+f for up
+nnoremap("<C-f>", "<C-u>")
+
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
