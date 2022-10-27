@@ -19,6 +19,9 @@ nnoremap("<leader>m", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
+-- Enters zen mode on big monitor
+nnoremap("<leader>z", "<C-w>v<C-w>35< <cmd> e blank <CR><C-w>l") -- Makes jumping back to the prev file easier
+
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
