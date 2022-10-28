@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
   use 'Xuyuanp/nerdtree-git-plugin'
   use 'karb94/neoscroll.nvim'
+  use 'averms/black-nvim'
 	-- Plugins for rust
 	use 'simrat39/rust-tools.nvim'
 	-- Plugins for haskell
