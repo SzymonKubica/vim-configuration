@@ -38,8 +38,8 @@ xnoremap("<leader>p", "\"_dP")
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
 
 -- Telescope Keybindings -------------------------------------------------------
-nnoremap("<leader>ff", "<cmd>only | Telescope find_files<cr>")
-nnoremap("<leader>fp", "<cmd>only | Telescope git_files<cr>")
+nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nnoremap("<leader>fp", "<cmd>Telescope git_files<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>")
 nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
