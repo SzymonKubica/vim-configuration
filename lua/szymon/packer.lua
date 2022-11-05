@@ -6,7 +6,9 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'folke/tokyonight.nvim'
+  -- Plugins for latex
 	use 'lervag/vimtex'
+  use 'sirver/ultisnips'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim' -- Dependency for telescope
 	use 'nvim-treesitter/nvim-treesitter'
