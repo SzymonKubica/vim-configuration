@@ -6,15 +6,17 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'folke/tokyonight.nvim'
-  -- Plugins for latex
-	use 'lervag/vimtex'
-  use 'sirver/ultisnips'
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-lua/plenary.nvim' -- Dependency for telescope
 	use 'nvim-treesitter/nvim-treesitter'
 	use 'mbbill/undotree'
 	use 'ellisonleao/gruvbox.nvim'
 	use 'neovim/nvim-lspconfig'
+	use {
+  'filipdutescu/renamer.nvim',
+  branch = 'master',
+  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 	-- Plugins for code completion
 	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
@@ -29,10 +31,9 @@ return require('packer').startup(function(use)
   use 'averms/black-nvim'
 	-- Plugins for rust
 	use 'simrat39/rust-tools.nvim'
-	-- Plugins for haskell
-	use {
-  'filipdutescu/renamer.nvim',
-  branch = 'master',
-  requires = { {'nvim-lua/plenary.nvim'} }
-	}
+  -- Plugins for latex
+	use 'lervag/vimtex'
+  use 'sirver/ultisnips'
+  -- Plugins for typescript
+  use 'sbdchd/neoformat'
 end)
