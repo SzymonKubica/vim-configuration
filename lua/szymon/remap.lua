@@ -30,6 +30,14 @@ nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
 inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
 
+-- Centers the cursor after <C-u> and <C-d>
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+
+-- Centers the cursor after repeating a search
+nnoremap("n", "nzz")
+nnoremap("N", "Nzz")
+
 -- Allows for pasting in visual mode without overwriting the paster buffer
 -- it is useful for multiple replacements.
 xnoremap("<leader>p", "\"_dP")
