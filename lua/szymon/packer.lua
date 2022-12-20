@@ -36,4 +36,6 @@ return require('packer').startup(function(use)
   use 'sirver/ultisnips'
   -- Plugins for typescript
   use 'sbdchd/neoformat'
+  use 'theprimeagen/harpoon'
+  use 'tpope/vim-fugitive'
 end)
