@@ -22,9 +22,9 @@ nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 -- Reformats the python file using black
 nnoremap("<leader>fo", "<cmd>!black % <CR>") -- Makes jumping back to the prev file easier
 
--- Enters zen mode on big monitor
+-- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments
-nnoremap("<leader>z", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
+nnoremap("<leader>y", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
