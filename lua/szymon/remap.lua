@@ -25,7 +25,7 @@ nnoremap("<leader>fo", "<cmd>!black % <CR>") -- Makes jumping back to the prev f
 
 -- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments
-nnoremap("<leader>f", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
+nnoremap("<leader>o", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
