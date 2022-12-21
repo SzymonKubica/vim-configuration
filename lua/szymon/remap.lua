@@ -2,6 +2,7 @@
 -- remap.lua specifies all keybindings.
 
 local nnoremap = require("szymon.keymap").nnoremap
+local vnoremap = require("szymon.keymap").vnoremap
 local inoremap = require("szymon.keymap").inoremap
 local xnoremap = require("szymon.keymap").xnoremap
 local nnoremap_silent = require("szymon.keymap").nnoremap_silent
@@ -24,7 +25,7 @@ nnoremap("<leader>fo", "<cmd>!black % <CR>") -- Makes jumping back to the prev f
 
 -- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments
-nnoremap("<leader>y", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
+nnoremap("<leader>f", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
@@ -34,13 +35,33 @@ inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
+-- When appending the line below to the end of the current line forces
+-- the cursor to remain at 0.
+nnoremap("J", "mzJ`z")
+
 -- Centers the cursor after repeating a search
 nnoremap("n", "nzz")
 nnoremap("N", "Nzz")
 
+-- Allows for moving the selection
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
+
+-- Allows for yanking into the system clipboard
+nnoremap("<leader>y", "\"+y")
+vnoremap("<leader>y", "\"+y")
+nnoremap("<leader>Y", "\"+Y")
+
+-- Deletes into the void register to avoid overwriting the paste buffer.
+nnoremap("<leader>d", "\"_d")
+vnoremap("<leader>d", "\"_d")
+
 -- Allows for pasting in visual mode without overwriting the paster buffer
 -- it is useful for multiple replacements.
 xnoremap("<leader>p", "\"_dP")
+nnoremap_silent("<leader>ex", "<cmd>!chmod +x %<CR>")
+
+-- Make the current file executable
 
 -- UndoTree Keybindings --------------------------------------------------------
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
