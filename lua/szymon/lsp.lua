@@ -30,7 +30,7 @@ local on_attach = function(client)
       nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
       nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
       nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-      inoremap('<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+      inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
       -- autoformat only for haskell
       if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
