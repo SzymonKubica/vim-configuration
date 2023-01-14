@@ -39,6 +39,13 @@ local on_attach = function(client)
       end
 end
 
+-- Set up the lsp configuration for elixir separately.
+lspconfig.elixirls.setup {
+  cmd = { "elixir-ls" },
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 -- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
 for _, lsp in ipairs(servers) do
@@ -88,7 +95,7 @@ for _, lsp in ipairs(servers) do
           "--header-insertion=iwyu",
           "--pch-storage=memory",
         }
-      }
+      },
 		}
   }
 end
