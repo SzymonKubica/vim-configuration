@@ -34,6 +34,8 @@ return require('packer').startup(function(use)
   -- Plugins for latex
 	use 'lervag/vimtex'
   use 'sirver/ultisnips'
+  -- Lean lsp support
+  use 'Julian/lean.nvim'
   -- Plugins for typescript
   use 'sbdchd/neoformat'
   use 'theprimeagen/harpoon'
