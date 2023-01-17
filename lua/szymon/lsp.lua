@@ -39,12 +39,6 @@ local on_attach = function(client)
       end
 end
 
--- Set up the lsp configuration for elixir separately.
-lspconfig.elixirls.setup {
-  cmd = { "elixir-ls" },
-  on_attach = on_attach,
-  capabilities = capabilities
-}
 
 -- Set up the lsp config for lean prover.
 require('lean').setup{
@@ -108,6 +102,12 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- Set up the lsp configuration for elixir separately.
+lspconfig.elixirls.setup {
+  cmd = { "elixir-ls" },
+  on_attach = on_attach,
+  capabilities = capabilities
+}
 -- luasnip setup
 local luasnip = require 'luasnip'
 
