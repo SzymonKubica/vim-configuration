@@ -46,6 +46,14 @@ lspconfig.elixirls.setup {
   capabilities = capabilities
 }
 
+-- Set up the lsp config for lean prover.
+require('lean').setup{
+  abbreviations = { builtin = true },
+  lsp = { on_attach = on_attach },
+  lsp3 = { on_attach = on_attach },
+  mappings = true,
+}
+
 -- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
 for _, lsp in ipairs(servers) do
