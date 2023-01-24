@@ -20,8 +20,8 @@ nnoremap("<leader>m", "<cmd> only <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
--- Reformats the python file using black
-nnoremap("<leader>fo", "<cmd>!black % <CR>") -- Makes jumping back to the prev file easier
+-- Invokes file formattting
+nnoremap("<leader>fo", "<cmd>Neoformat <CR>") -- Makes jumping back to the prev file easier
 
 -- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments

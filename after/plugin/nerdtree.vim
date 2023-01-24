@@ -1,6 +1,6 @@
 function! NERDTreeMapping()
 	nmap <buffer> n cd :only <CR> :enew <CR>
-  nmap <buffer> d V d
+  nmap <buffer> d Vd
   nmap <buffer> r cd 0 /\<\a/><CR>"+y$ :!mv <c-r>+
   nmap <buffer> md 0 /\<\a/><CR>"+y$ :!mv <c-r>+
   nmap <buffer> D cd :!mkdir
