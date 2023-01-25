@@ -34,7 +34,8 @@ vim.opt.undofile = true
 
 -- Visual Indicators -----------------------------------------------------------
 vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+-- Disable the fill chars
+vim.cmd[[set fillchars+=eob:\ ]]
 
 -- Code Completion Settings ----------------------------------------------------
 vim.g.completion_enable_fuzzy_match = 1
