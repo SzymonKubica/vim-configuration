@@ -26,7 +26,15 @@ return require('packer').startup(function(use)
 	use 'mbbill/undotree'
 	use 'ellisonleao/gruvbox.nvim'
 	use 'neovim/nvim-lspconfig'
-  use 'kylechui/nvim-surround'
+  use {
+    'kylechui/nvim-surround',
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
+  }
 	use {
   'filipdutescu/renamer.nvim',
   branch = 'master',
