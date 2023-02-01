@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
 	use 'mbbill/undotree'
 	use 'ellisonleao/gruvbox.nvim'
 	use 'neovim/nvim-lspconfig'
+  use 'kylechui/nvim-surround'
 	use {
   'filipdutescu/renamer.nvim',
   branch = 'master',
