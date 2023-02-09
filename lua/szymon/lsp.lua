@@ -7,23 +7,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local lspconfig = require('lspconfig')
 
--- Enable lua lsp server.
-
--- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
-local rt = require("rust-tools")
-
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<Leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
-
-local on_attach = function(client)
+local on_attach = function()
       -- Mappings
       nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
       nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
@@ -39,6 +23,21 @@ local on_attach = function(client)
       end
 end
 
+-- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- enable other keybindings
+      on_attach()
+      -- Hover actions
+      vim.keymap.set("n", "<Leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
 
 -- Set up the lsp config for lean prover.
 require('lean').setup{
@@ -49,7 +48,7 @@ require('lean').setup{
 }
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
+local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab', 'rust-analyzer', 'rust-tools'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
 		on_attach = on_attach,
@@ -133,6 +132,7 @@ cmp.setup {
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       else
+        fallback()
         -- fallback doesn't work for some lsp clients
         -- insert two spaces instead.
         vim.api.nvim_feedkeys('  ', 'i', true)
@@ -149,8 +149,27 @@ cmp.setup {
     end, { 'i', 's' }),
   }),
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'path' },                              -- file paths
+    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
     { name = 'luasnip' },
     { name = 'ultisnips' },
+    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer', keyword_length = 2 },        -- source current buffer
+    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip
+    { name = 'calc'},                               -- source for math calculation
+  },
+  formatting = {
+      fields = {'menu', 'abbr', 'kind'},
+      format = function(entry, item)
+          local menu_icon ={
+              nvim_lsp = 'λ',
+              vsnip = '⋗',
+              buffer = 'Ω',
+              path = '..',
+          }
+          item.menu = menu_icon[entry.source.name]
+          return item
+      end,
   },
 }
