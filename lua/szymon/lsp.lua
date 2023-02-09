@@ -48,7 +48,7 @@ require('lean').setup{
 }
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab', 'rust-analyzer', 'rust-tools'}
+local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
 		on_attach = on_attach,
