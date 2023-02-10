@@ -1,12 +1,16 @@
 -- Version of 28.09.2022.
 -- Add additional capabilities supported by nvim-cmp
 
-local nnoremap = require("szymon.keymap").nnoremap
-local inoremap = require("szymon.keymap").inoremap
+local nnoremap = require('szymon.keymap').nnoremap
+local inoremap = require('szymon.keymap').inoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+local lspconfig = require 'lspconfig'
+local luasnip = require 'luasnip'
+local cmp = require 'cmp'
+local rust_tools = require 'rust-tools'
+local lean = require 'lean'
 
-local lspconfig = require('lspconfig')
-
+-- Global mappings for all lsp clients.
 local on_attach = function()
       -- Mappings
       nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
@@ -23,30 +27,6 @@ local on_attach = function()
       end
 end
 
--- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
-local rt = require("rust-tools")
-
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- enable other keybindings
-      on_attach()
-      -- Hover actions
-      vim.keymap.set("n", "<Leader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
-
--- Set up the lsp config for lean prover.
-require('lean').setup{
-  abbreviations = { builtin = true },
-  lsp = { on_attach = on_attach },
-  lsp3 = { on_attach = on_attach },
-  mappings = true,
-}
-
 -- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
 for _, lsp in ipairs(servers) do
@@ -56,7 +36,7 @@ for _, lsp in ipairs(servers) do
 		settings = {
 			haskell = {
 					hlintOn = true,
-					formattingProvider = "fourmolu"
+					formattingProvider = 'fourmolu'
 			},
       Lua = {
         runtime = {
@@ -83,35 +63,56 @@ for _, lsp in ipairs(servers) do
       },
       cpp = {
         cmd = {
-          "clangd",
-          "--background-index",
-          "-j=12",
-          "--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
-          "--clang-tidy",
-          "--clang-tidy-checks=*",
-          "--all-scopes-completion",
-          "--cross-file-rename",
-          "--completion-style=detailed",
-          "--header-insertion-decorators",
-          "--header-insertion=iwyu",
-          "--pch-storage=memory",
+          'clangd',
+          '--background-index',
+          '-j=12',
+          '--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++',
+          '--clang-tidy',
+          '--clang-tidy-checks=*',
+          '--all-scopes-completion',
+          '--cross-file-rename',
+          '--completion-style=detailed',
+          '--header-insertion-decorators',
+          '--header-insertion=iwyu',
+          '--pch-storage=memory',
         }
       },
 		}
   }
 end
 
+-- Rust, Lean and Elixir require some custom configuration and so they
+-- are configured separately.
+
+rust_tools.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- enable other keybindings
+      on_attach()
+      -- Hover actions
+      vim.keymap.set('n', '<Leader>h', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set('n', '<Leader>a', rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+
+-- Set up the lsp config for lean prover
+lean.setup{
+  abbreviations = { builtin = true },
+  lsp = { on_attach = on_attach },
+  lsp3 = { on_attach = on_attach },
+  mappings = true,
+}
+
 -- Set up the lsp configuration for elixir separately.
 lspconfig.elixirls.setup {
-  cmd = { "elixir-ls" },
+  cmd = { 'elixir-ls' },
   on_attach = on_attach,
   capabilities = capabilities
 }
--- luasnip setup
-local luasnip = require 'luasnip'
 
--- nvim-cmp setup
-local cmp = require 'cmp'
+-- nvim-cmp setup for autocompletion.
 cmp.setup {
   snippet = {
     expand = function(args)
