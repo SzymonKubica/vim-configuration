@@ -8,24 +8,17 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local lspconfig = require('lspconfig')
 
 local on_attach = function()
-      -- Mappings
+      -- Mappings applicable to all buffers.
       nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
       nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
       nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
       nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
       nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
       inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-
-      -- autoformat only for haskell
-      if vim.api.nvim_buf_get_option(0, 'filetype') == 'haskell' then
-          vim.api.nvim_command[[
-              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
-      end
 end
 
 -- Setup the rust-analyzer separately as it is managed by the rust-nvim plugin.
 local rt = require("rust-tools")
-
 rt.setup({
   server = {
     on_attach = function(_, bufnr)
