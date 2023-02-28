@@ -9,31 +9,80 @@ def env(name):
 endglobal
 
 
-snippet template "Basic template" b
-\documentclass[a4paper]{article}
-
+snippet template "Basic template" bA
+\documentclass[11pt]{article}
+%% Package imports
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage[dutch]{babel}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{amsthm}
+\usepackage{minted}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{parskip}
+\usepackage{minted}
+\usepackage{newunicodechar}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\renewcommand{\baselinestretch}{1.5}
+
+%% Commands for inserting big braces.
+\newcommand\lb{\left\lbrace}
+\newcommand\rb{\right\rbrace}
+
+%% Commands for set such that notation
+\newcommand\st{\text{ } | \text{ }}
+
+\definecolor{bg}{RGB}{240, 240, 240}
+
+%% Math symbols
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\N{\mathbb{N}}
+\newcommand\C{\mathbb{C}}
+\newcommand\sucht{\text{ such that }}
+\newcommand\weh{\text{ we have }}
+
+\newunicodechar{ℝ}{\ensuremath{\mathbb{R}}}
+\newunicodechar{ε}{\ensuremath{\epsilon}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{∉}{\ensuremath{\not\in}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∧}{\ensuremath{\land}}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{∨}{\ensuremath{\lor}}
+\newunicodechar{⊆}{\ensuremath{\subset}}
 
 
-% figure support
-\usepackage{import}
-\usepackage{xifthen}
-\pdfminorversion=7
-\usepackage{pdfpages}
-\usepackage{transparent}
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
+\usepackage[shortlabels]{enumitem}
 
-\pdfsuppresswarningpagegroup=1
 
+\newtheorem*{theorem}{Theorem}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%% Page style settings
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[L]{\slshape{Head here}}
+\fancyhead[R]{\slshape{CID: 01871147}}
+\fancyfoot[C]{\thepage}
 \begin{document}
-	$0
+
+\title{Title here \\ Subtitile here}
+\date{\today}
+\author{CID: 01871147}
+\maketitle
 \end{document}
 endsnippet
 
