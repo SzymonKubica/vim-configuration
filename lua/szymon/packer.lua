@@ -63,4 +63,6 @@ return require('packer').startup(function(use)
   use 'sbdchd/neoformat'
   use 'theprimeagen/harpoon'
   use 'tpope/vim-fugitive'
+  -- TLA+ support
+  use({"susliko/tla.nvim", requires = { "nvim-lua/plenary.nvim" }})
 end)

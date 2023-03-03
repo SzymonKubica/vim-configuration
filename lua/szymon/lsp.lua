@@ -91,6 +91,18 @@ rust_tools.setup({
   },
 })
 
+-- TLA+ setup
+require("tla").setup{
+  -- Path to java binary directory. $JAVA_HOME by default
+  java_executable = "/usr/bin/java",
+
+  -- Options passed to the jvm when running tla2tools
+  java_opts = { '-XX:+UseParallelGC' },
+
+  -- Only needed if you don't wont automatic tla2tools installation
+  tla2tools = "path/to/tla2tools.jar",
+}
+
 -- Set up the lsp config for lean prover
 lean.setup{
   abbreviations = { builtin = true },
