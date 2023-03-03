@@ -127,7 +127,7 @@ cmp.setup {
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       else
-        fallback()
+        --fallback()
         -- fallback doesn't work for some lsp clients
         -- insert two spaces instead.
         vim.api.nvim_feedkeys('  ', 'i', true)
