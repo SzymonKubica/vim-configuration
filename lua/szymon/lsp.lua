@@ -22,7 +22,7 @@ local on_attach = function()
 end
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'sumneko_lua', 'texlab'}
+local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
 		on_attach = on_attach,
@@ -90,18 +90,6 @@ rust_tools.setup({
     end,
   },
 })
-
--- TLA+ setup
-require("tla").setup{
-  -- Path to java binary directory. $JAVA_HOME by default
-  java_executable = "/usr/bin/java",
-
-  -- Options passed to the jvm when running tla2tools
-  java_opts = { '-XX:+UseParallelGC' },
-
-  -- Only needed if you don't wont automatic tla2tools installation
-  tla2tools = "path/to/tla2tools.jar",
-}
 
 -- Set up the lsp config for lean prover
 lean.setup{
