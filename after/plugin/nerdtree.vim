@@ -1,8 +1,8 @@
 function! NERDTreeMapping()
-	nmap <buffer> n cd :only <CR> :enew <CR>
-  nmap <buffer> d Vd
-  nmap <buffer> r cd 0 /\<\a/><CR>"+y$ :!mv <c-r>+
-  nmap <buffer> md 0 /\<\a/><CR>"+y$ :!mv <c-r>+
+	nmap <buffer> n ma
+  nmap <buffer> rm Vd
+  nmap <buffer> rn cd 0 /\<\a/><CR>"+y$ :!mv <c-r>+
+  nmap <buffer> rnd 0 /\<\a/><CR>"+y$ :!mv <c-r>+
   nmap <buffer> D cd :!mkdir
 endfunction
 
