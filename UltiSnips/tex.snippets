@@ -86,6 +86,16 @@ snippet template "Basic template" bA
 \end{document}
 endsnippet
 
+snippet mint "minted environment" bA
+\begin{code}
+\begin{minted}[numbersep=5pt, fontsize=\small, linenos=false, bgcolor=bg]{lean}
+$1
+\end{minted}
+\captionof{listing}{Using mathlib's Markov inequality.}
+\end{code}
+endsnippet
+
+
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
 	$0
@@ -470,11 +480,6 @@ snippet nabl "nabla" iA
 \nabla
 endsnippet
 
-context "math()"
-snippet xx "cross" iA
-\times
-endsnippet
-
 priority 100
 snippet ** "cdot" iA
 \cdot
@@ -560,7 +565,7 @@ endsnippet
 
 
 context "math()"
-snippet cc "subset" Ai
+snippet subset "subset" Ai
 \subset
 endsnippet
 
@@ -660,12 +665,6 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
-endsnippet
-
-priority 100
-context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
 snippet letw "let omega" iA
