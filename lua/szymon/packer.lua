@@ -6,6 +6,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'folke/tokyonight.nvim'
+  use 'github/copilot.vim'
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
