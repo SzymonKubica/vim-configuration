@@ -21,6 +21,7 @@ local on_attach = function()
       inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 end
 
+
 -- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab'}
 for _, lsp in ipairs(servers) do
