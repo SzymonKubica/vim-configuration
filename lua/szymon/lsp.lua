@@ -10,6 +10,12 @@ local cmp = require 'cmp'
 local rust_tools = require 'rust-tools'
 local lean = require 'lean'
 
+-- Copilot setup
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
+
 -- Global mappings for all lsp clients.
 local on_attach = function()
       -- Mappings applicable to all buffers.
@@ -20,7 +26,6 @@ local on_attach = function()
       nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
       inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 end
-
 
 -- Enable language servers with the additional completion features from nvim-cmp
 local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab'}
@@ -145,6 +150,7 @@ cmp.setup {
     end, { 'i', 's' }),
   }),
   sources = {
+    { name = 'copilot', group_index = 2 },
     { name = 'path' },                              -- file paths
     { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
     { name = 'luasnip' },
