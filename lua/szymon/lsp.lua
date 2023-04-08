@@ -10,6 +10,10 @@ local cmp = require 'cmp'
 local rust_tools = require 'rust-tools'
 local lean = require 'lean'
 
+-- Automatically shows a box for inline diagnostics when howered.
+vim.o.updatetime = 250
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
 -- Copilot setup
 require("copilot").setup({
   suggestion = { enabled = false },
