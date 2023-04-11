@@ -80,7 +80,7 @@ nnoremap_silent('<leader>rn', '<cmd>lua require("renamer").rename()<cr>')
 xnoremap_silent('<leader>rn', '<cmd>lua require("renamer").rename()<cr>')
 
 -- LSP Shortcuts ---------------------------------------------------------------
-nnoremap_silent('<space>e', vim.diagnostic.open_float)
+nnoremap_silent('<leader>q', vim.diagnostic.open_float)
 nnoremap_silent('[d', vim.diagnostic.goto_prev)
 nnoremap_silent(']d', vim.diagnostic.goto_next)
-nnoremap_silent('<space>q', vim.diagnostic.setloclist)
+nnoremap_silent('<leader>ql', vim.diagnostic.setloclist)
