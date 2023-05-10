@@ -8,6 +8,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.js", "*.tsx", "*.ts", "*.ex", ".hs" },
+  pattern = { "*.js", "*.ts", "*.ex", ".hs" },
   command = [[Neoformat]],
 })
