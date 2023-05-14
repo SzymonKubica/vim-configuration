@@ -68,6 +68,7 @@ nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
 
 -- Telescope Keybindings -------------------------------------------------------
 nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>")
+nnoremap("<leader>fr", "<cmd>Telescope resume<cr>")
 nnoremap("<leader>fp", "<cmd>Telescope git_files<cr>")
 nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>") -- You need to have ripgrep installled for this to work.
 nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
