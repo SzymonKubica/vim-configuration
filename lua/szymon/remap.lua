@@ -74,7 +74,7 @@ nnoremap("<leader>fg", "<cmd>Telescope live_grep<cr>") -- You need to have ripgr
 nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>")
 nnoremap("<leader>fh", "<cmd>Telescope help_tags<cr>")
 nnoremap("<leader>ps", "<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.input(\"Grep For > \")})<cr>")
-nnoremap("<leader>td", "<cmd>lua require('telescope.builtin').grep_string({ search = 'TODO'})<cr>")
+nnoremap("<leader>td", "<cmd>lua require('telescope.builtin').grep_string({ search = 'todo'})<cr>")
 
 -- Rename Keybindings ----------------------------------------------------------
 inoremap_silent('<F2>', '<cmd>lua require("renamer").rename()<cr>')
