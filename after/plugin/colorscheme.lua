@@ -10,4 +10,4 @@ function ApplyColorscheme(color)
   vim.cmd.colorscheme(color)
 end
 
-ApplyColorscheme("gruvbox")
+ApplyColorscheme("rose-pine")
