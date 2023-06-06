@@ -14,12 +14,10 @@ local lean = require 'lean'
 vim.o.updatetime = 250
 
 -- Copilot setup
---[[
 require("copilot").setup({
   suggestion = { enabled = false },
   panel = { enabled = false },
 })
---]]
 
 -- Global mappings for all lsp clients.
 local on_attach = function()

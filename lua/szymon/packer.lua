@@ -6,15 +6,14 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'folke/tokyonight.nvim'
-  -- Disable copilot because I don't have a subscription.
-  --[[ use { "zbirenbaum/copilot.lua" }
+  use { "zbirenbaum/copilot.lua" }
   use {
   "zbirenbaum/copilot-cmp",
   after = { "copilot.lua" },
   config = function ()
     require("copilot_cmp").setup()
   end
-  } --]]
+  }
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
