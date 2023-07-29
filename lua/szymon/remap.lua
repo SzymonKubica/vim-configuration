@@ -83,7 +83,7 @@ xnoremap_silent('<leader>rn', '<cmd>lua require("renamer").rename()<cr>')
 
 -- Git Keybindings -------------------------------------------------------------
 nnoremap_silent('<leader>ga', '<cmd>Git add %<cr>')
-nnoremap_silent('<leader>gc', '<cmd>lua os.execute(string.format(\'git commit -m %s\', vim.fn.input(\"Enter commit message: \")))')
+nnoremap_silent('<leader>gc', '<cmd>lua print(vim.fn.system({\'git\', \'commit\', \'-m\', vim.fn.input(\"Commit message: \")}))<cr>')
 nnoremap_silent('<leader>gs', '<cmd>Git status <cr>')
 nnoremap_silent('<leader>gp', '<cmd>Git push <cr>')
 
