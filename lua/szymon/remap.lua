@@ -80,6 +80,13 @@ inoremap_silent('<F2>', '<cmd>lua require("renamer").rename()<cr>')
 nnoremap_silent('<leader>rn', '<cmd>lua require("renamer").rename()<cr>')
 xnoremap_silent('<leader>rn', '<cmd>lua require("renamer").rename()<cr>')
 
+
+-- Git Keybindings -------------------------------------------------------------
+nnoremap_silent('<leader>ga', '<cmd>Git add %<cr>')
+nnoremap_silent('<leader>gc', '<cmd>Git commit -m ')
+nnoremap_silent('<leader>gs', '<cmd>Git status <cr>')
+nnoremap_silent('<leader>gp', '<cmd>Git push <cr>')
+
 -- LSP Shortcuts ---------------------------------------------------------------
 nnoremap_silent('<leader>q', vim.diagnostic.open_float)
 nnoremap_silent('[d', vim.diagnostic.goto_prev)
