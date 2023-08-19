@@ -12,7 +12,7 @@ local nmap = require("szymon.keymap").nmap
 vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
 -- Show files directory in tree view.
-nnoremap("<leader>sd", "<cmd> NERDTreeToggle % <CR>")
+nnoremap("<leader>sd", "<cmd> NERDTreeToggle <CR>")
 
 -- Make the current buffer fullscreen and hid all other buffers
 nnoremap("<leader>m", "<cmd> only <CR>")
