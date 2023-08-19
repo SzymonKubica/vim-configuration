@@ -20,7 +20,7 @@ nnoremap("<leader>m", "<cmd> only <CR>")
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
 -- Invokes file formattting
-nnoremap("<leader>fo", "<cmd>Neoformat <CR>") -- Makes jumping back to the prev file easier
+nnoremap("<leader>fo", "<cmd>Neoformat <CR>")
 
 -- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments
@@ -58,9 +58,9 @@ vnoremap("<leader>d", "\"_d")
 -- Allows for pasting in visual mode without overwriting the paster buffer
 -- it is useful for multiple replacements.
 xnoremap("<leader>p", "\"_dP")
-nnoremap_silent("<leader>ex", "<cmd>!chmod +x %<CR>")
 
 -- Make the current file executable
+nnoremap_silent("<leader>ex", "<cmd>!chmod +x %<CR>")
 
 -- UndoTree Keybindings --------------------------------------------------------
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
