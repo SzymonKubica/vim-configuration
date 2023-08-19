@@ -44,7 +44,7 @@ nnoremap("<leader>sd", "<cmd> lua NerdTreeToggle() <CR>")
 nnoremap("<leader>sf", "<cmd> lua NerdTreeFind() <CR>")
 
 -- Make the current buffer fullscreen and hid all other buffers
-nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffert() <CR>")
+nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffer() <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
@@ -53,7 +53,7 @@ nnoremap("<leader>fo", "<cmd>Neoformat <CR>")
 
 -- Enters centered mode on big monitor
 -- Need to open and close nerdtree to avoid misalignments
-nnoremap("<leader>o", "<cmd> only <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
+nnoremap("<leader>o", "<cmd> lua MaximizeCurrentBuffer() <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
