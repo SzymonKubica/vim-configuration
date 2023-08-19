@@ -7,7 +7,6 @@ local xnoremap = require("szymon.keymap").xnoremap
 local nnoremap_silent = require("szymon.keymap").nnoremap_silent
 local inoremap_silent = require("szymon.keymap").inoremap_silent
 local xnoremap_silent = require("szymon.keymap").xnoremap_silent
-local nmap = require("szymon.keymap").nmap
 
 vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
@@ -45,7 +44,7 @@ nnoremap("<leader>sd", "<cmd> lua NerdTreeToggle() <CR>")
 nnoremap("<leader>sf", "<cmd> lua NerdTreeFind() <CR>")
 
 -- Make the current buffer fullscreen and hid all other buffers
-nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffer() <CR>")
+nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffert() <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
