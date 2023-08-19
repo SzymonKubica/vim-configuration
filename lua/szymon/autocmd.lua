@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   command = [[%s/\s\+$//e]],
 })
 
+-- Autoformatting on file save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.js", "*.ts", "*.ex", ".hs" },
   command = [[Neoformat]],

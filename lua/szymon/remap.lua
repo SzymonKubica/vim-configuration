@@ -11,11 +11,41 @@ local nmap = require("szymon.keymap").nmap
 
 vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
 
--- Show files directory in tree view.
-nnoremap("<leader>sd", "<cmd> NERDTreeToggle <CR>")
+-- Reimplemented the toggling functionality because the default one
+-- would shift the width of the main buffer when having it centered.
+IsNerdTreeOpen = false
+function NerdTreeToggle()
+  if IsNerdTreeOpen then
+    vim.cmd [[ NERDTreeClose ]]
+    IsNerdTreeOpen = false
+  else
+    vim.cmd [[ NERDTreeFocus ]]
+    IsNerdTreeOpen = true
+  end
+end
+
+function NerdTreeFind()
+  if IsNerdTreeOpen then
+    vim.cmd [[ NERDTreeClose ]]
+    IsNerdTreeOpen = false
+  else
+    vim.cmd [[ NERDTreeFind ]]
+    IsNerdTreeOpen = true
+  end
+end
+
+function MaximizeCurrentBuffer()
+  vim.cmd [[ only ]]
+  IsNerdTreeOpen = false
+end
+
+-- Show current working directory in the tree view.
+nnoremap("<leader>sd", "<cmd> lua NerdTreeToggle() <CR>")
+-- Show current file in the tree view.
+nnoremap("<leader>sf", "<cmd> lua NerdTreeFind() <CR>")
 
 -- Make the current buffer fullscreen and hid all other buffers
-nnoremap("<leader>m", "<cmd> only <CR>")
+nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffer() <CR>")
 
 nnoremap("<leader>b", "<C-^>") -- Makes jumping back to the prev file easier
 
@@ -91,3 +121,4 @@ nnoremap_silent('<leader>q', vim.diagnostic.open_float)
 nnoremap_silent('[d', vim.diagnostic.goto_prev)
 nnoremap_silent(']d', vim.diagnostic.goto_next)
 nnoremap_silent('<leader>l', vim.diagnostic.setloclist)
+
