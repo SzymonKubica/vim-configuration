@@ -23,6 +23,12 @@ function NerdTreeToggle()
   end
 end
 
+function NerdTreeJump()
+  if IsNerdTreeOpen then
+    vim.cmd [[ NERDTreeFocus ]]
+  end
+end
+
 function NerdTreeFind()
   if IsNerdTreeOpen then
     vim.cmd [[ NERDTreeClose ]]
@@ -42,6 +48,8 @@ end
 nnoremap("<leader>sd", "<cmd> lua NerdTreeToggle() <CR>")
 -- Show current file in the tree view.
 nnoremap("<leader>sf", "<cmd> lua NerdTreeFind() <CR>")
+-- Jump to the open tree view.
+nnoremap("<leader>sj", "<cmd> lua NerdTreeJump() <CR>")
 
 -- Make the current buffer fullscreen and hid all other buffers
 nnoremap("<leader>m", "<cmd> lua MaximizeCurrentBuffer() <CR>")
