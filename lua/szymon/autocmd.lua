@@ -12,3 +12,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.js", "*.ts", "*.ex", ".hs" },
   command = [[Neoformat]],
 })
+
+
+-- Set tabs 8 spaces wide for c
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = { "*.h", "*.c" },
+  command = [[setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4]],
+})
