@@ -85,6 +85,7 @@ end
 
 -- Rust, Lean and Elixir require some custom configuration and so they
 -- are configured separately.
+--
 
 rust_tools.setup({
   server = {
