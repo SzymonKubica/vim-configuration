@@ -128,7 +128,7 @@ cmp.setup {
     ['<C-Tab>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = false, -- Only confirm if a suggestion was explicitly selected.
+      select = true, -- Only confirm if a suggestion was explicitly selected.
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
