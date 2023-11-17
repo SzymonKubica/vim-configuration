@@ -135,7 +135,7 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true, -- Only confirm if a suggestion was explicitly selected.
+      select = false, -- Only confirm if a suggestion was explicitly selected.
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() and has_words_before() then
