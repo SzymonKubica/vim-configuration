@@ -20,27 +20,27 @@ require("copilot").setup({
 
 -- Global mappings for all lsp clients.
 local on_attach = function()
-      -- Mappings applicable to all buffers.
-      nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
-      nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
-      nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-      nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-      nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-      inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  -- Mappings applicable to all buffers.
+  nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+  nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+  nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 end
 
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab', 'solidity_ls_nomicfoundation'}
+local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab', 'solidity_ls_nomicfoundation' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-		on_attach = on_attach,
+    on_attach = on_attach,
     capabilities = capabilities,
-		settings = {
-			haskell = {
-					hlintOn = true,
-					formattingProvider = 'fourmolu'
-			},
+    settings = {
+      haskell = {
+        hlintOn = true,
+        formattingProvider = 'fourmolu'
+      },
       Lua = {
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
@@ -49,7 +49,7 @@ for _, lsp in ipairs(servers) do
           path = '/usr/bin/lua',
         },
         diagnostics = {
-          globals = {'vim', 'awesome'},
+          globals = { 'vim', 'awesome' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -80,7 +80,7 @@ for _, lsp in ipairs(servers) do
           '--pch-storage=memory',
         }
       },
-		}
+    }
   }
 end
 
@@ -98,11 +98,27 @@ rust_tools.setup({
       -- Code action groups
       vim.keymap.set('n', '<Leader>a', rust_tools.code_action_group.code_action_group, { buffer = bufnr })
     end,
+    --Trying to set it so that the rust analyzer works on esp32 targets.
+    imports = {
+      granularity = {
+        group = "module",
+      },
+      prefix = "self",
+    },
+    cargo = {
+      buildScripts = {
+        enable = true,
+      },
+      target = { "x86_64-unknown-linux-gnu" },
+    },
+    procMacro = {
+      enable = true
+    },
   },
 })
 
 -- Set up the lsp config for lean prover
-lean.setup{
+lean.setup {
   abbreviations = { builtin = true },
   lsp = { on_attach = on_attach },
   lsp3 = { on_attach = on_attach },
@@ -120,7 +136,7 @@ lspconfig.elixirls.setup {
 local has_words_before = function()
   if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
 -- nvim-cmp setup for autocompletion.
@@ -160,29 +176,29 @@ cmp.setup {
     end, { 'i', 's' }),
   }),
   sources = {
-    { name = 'path' },                              -- file paths
-    { name = 'nvim_lsp', keyword_length = 3 },      -- from language server
+    { name = 'path' }, -- file paths
+    { name = 'nvim_lsp', keyword_length = 3 }, -- from language server
     { name = 'luasnip' },
     { name = 'ultisnips' },
     { name = 'copilot', group_index = 2 },
-    { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
-    { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = 'buffer', keyword_length = 2 },        -- source current buffer
-    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip
-    { name = 'calc'},                               -- source for math calculation
+    { name = 'nvim_lsp_signature_help' }, -- display function signatures with current parameter emphasized
+    { name = 'nvim_lua', keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer', keyword_length = 2 }, -- source current buffer
+    { name = 'vsnip', keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+    { name = 'calc' }, -- source for math calculation
   },
   formatting = {
-      fields = {'menu', 'abbr', 'kind'},
-      format = function(entry, item)
-          local menu_icon ={
-              nvim_lsp = 'λ',
-              vsnip = '⋗',
-              buffer = 'Ω',
-              path = '..',
-              copilot = '🤖',
-          }
-          item.menu = menu_icon[entry.source.name]
-          return item
-      end,
+    fields = { 'menu', 'abbr', 'kind' },
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        vsnip = '⋗',
+        buffer = 'Ω',
+        path = '..',
+        copilot = '🤖',
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   },
 }
