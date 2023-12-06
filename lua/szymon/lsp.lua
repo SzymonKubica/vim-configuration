@@ -132,13 +132,6 @@ lspconfig.elixirls.setup {
   capabilities = capabilities
 }
 
--- Function allowing make the tab behave properly with copilot suggestions.
-local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-end
-
 -- nvim-cmp setup for autocompletion.
 cmp.setup {
   snippet = {
@@ -146,6 +139,7 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  preselect = cmp.PreselectMode.None,
   mapping = cmp.mapping.preset.insert({
     ['<C-f>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -154,7 +148,7 @@ cmp.setup {
       select = false, -- Only confirm if a suggestion was explicitly selected.
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() and has_words_before() then
+      if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
