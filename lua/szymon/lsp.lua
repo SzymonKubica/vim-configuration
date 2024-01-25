@@ -112,7 +112,7 @@ rust_tools.setup({
       target = { "x86_64-unknown-linux-gnu" },
     },
     procMacro = {
-      enable = true
+      enable = false
     },
   },
 })
