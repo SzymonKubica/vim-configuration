@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     require("copilot_cmp").setup()
   end
   }
+  use 'yorickpeterse/nvim-grey'
   use({
     'rose-pine/neovim',
     as = 'rose-pine',
