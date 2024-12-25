@@ -114,6 +114,7 @@ rust_tools.setup({
     procMacro = {
       enable = false
     },
+    capabilities = vim.lsp.protocol.make_client_capabilities(),
   },
 })
 
