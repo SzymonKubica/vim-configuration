@@ -6,7 +6,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 local lspconfig = require 'lspconfig'
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
-local rust_tools = require 'rust-tools'
 local lean = require 'lean'
 
 -- Automatically shows a box for inline diagnostics when howered.
@@ -84,39 +83,9 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Rust, Lean and Elixir require some custom configuration and so they
+-- Lean and Elixir require some custom configuration and so they
 -- are configured separately.
 --
-
-rust_tools.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- enable other keybindings
-      on_attach()
-      -- Hover actions
-      vim.keymap.set('n', '<Leader>h', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set('n', '<Leader>a', rust_tools.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-    --Trying to set it so that the rust analyzer works on esp32 targets.
-    imports = {
-      granularity = {
-        group = "module",
-      },
-      prefix = "self",
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-      target = { "x86_64-unknown-linux-gnu" },
-    },
-    procMacro = {
-      enable = false
-    },
-    capabilities = vim.lsp.protocol.make_client_capabilities(),
-  },
-})
 
 -- Set up the lsp config for lean prover
 lean.setup {
@@ -131,6 +100,27 @@ lspconfig.elixirls.setup {
   cmd = { 'elixir-ls' },
   on_attach = on_attach,
   capabilities = capabilities
+}
+
+-- Initializes the Rust lsp setup.
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      -- you can also put keymaps in here
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
 }
 
 -- nvim-cmp setup for autocompletion.
