@@ -11,6 +11,9 @@ local lean = require 'lean'
 -- Automatically shows a box for inline diagnostics when howered.
 vim.o.updatetime = 250
 
+-- Initializes the Rust lsp setup.
+
+
 -- Copilot setup
 require("copilot").setup({
   suggestion = { enabled = false },
@@ -95,14 +98,6 @@ lean.setup {
   mappings = true,
 }
 
--- Set up the lsp configuration for elixir separately.
-lspconfig.elixirls.setup {
-  cmd = { 'elixir-ls' },
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
--- Initializes the Rust lsp setup.
 vim.g.rustaceanvim = {
   -- Plugin configuration
   tools = {
@@ -110,17 +105,47 @@ vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
     on_attach = function(client, bufnr)
-      -- you can also put keymaps in here
+        vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
+        on_attach()
     end,
+
+    --Trying to set it so that the rust analyzer works on esp32 targets.
+    -- imports = {
+    --   granularity = {
+    --     group = "module",
+    --   },
+    --   prefix = "self",
+    -- },
+    -- cargo = {
+    --   buildScripts = {
+    --     enable = true,
+    --   },
+    --   target = { "x86_64-unknown-linux-gnu" },
+    -- },
+    -- procMacro = {
+    --   enable = false
+    -- },
+  capabilities = {
+    experimental = {
+      snippetTextEdit = false,
+  },},
     default_settings = {
       -- rust-analyzer language server configuration
       ['rust-analyzer'] = {
       },
-    },
+  },
   },
   -- DAP configuration
   dap = {
   },
+}
+
+
+-- Set up the lsp configuration for elixir separately.
+lspconfig.elixirls.setup {
+  cmd = { 'elixir-ls' },
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 -- nvim-cmp setup for autocompletion.

@@ -27,7 +27,7 @@
   },
 	'nvim-telescope/telescope.nvim',
 	'nvim-lua/plenary.nvim', -- Dependency for telescope
-	'nvim-treesitter/nvim-treesitter',
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	'mbbill/undotree',
 	'ellisonleao/gruvbox.nvim',
 	'neovim/nvim-lspconfig',
@@ -56,12 +56,11 @@
   'ryanoasis/vim-devicons',
   'Xuyuanp/nerdtree-git-plugin',
   'averms/black-nvim',
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^5', -- Recommended
-    lazy = false, -- This plugin is already lazy
+{
+    "mrcjkb/rustaceanvim",
+    version = "^4",
   },
-	'lervag/vimtex',
+  'lervag/vimtex',
   'sirver/ultisnips',
   -- Lean lsp support
   'Julian/lean.nvim',

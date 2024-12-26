@@ -1,4 +1,5 @@
 -- init.lua includes all configuration dependencies.
+require("szymon.lazy")
 require("szymon.set")
 require("szymon.remap")
 require("szymon.autocmd")
