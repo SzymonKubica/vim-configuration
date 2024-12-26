@@ -12,18 +12,31 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- Miscellaneous ---------------------------------------------------------------
+vim.opt.exrc = true -- sources init.lua if present in the current working dir.
+
+vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
+
+vim.opt.scrolloff = 8
+vim.opt.wrap = false
+
+vim.cmd[[let NERDTreeMapCustomOpen='L']]
+vim.cmd[[let NERDTreeMapUpdir='h']]
+vim.cmd[[let NERDTreeMapChangeRoot='l']]
+
+-- vim.g.NERDTreeMapCustomOpen = 'L'
+vim.g.NERDTreeMinimalUI = 1 -- Removes the help prompt
+-- vim.g.NERDTreeMapChangeRoot = 'l'
+-- vim.g.NERDTreeMapUpdir = "h"
+
+-- Typescript formatting using Neoformat
+vim.g.neoformat_try_node_exe = 1
+
 -- Search Settings -------------------------------------------------------------
 vim.opt.incsearch  = true
 vim.opt.hlsearch = false
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
-
--- Netrw Settings --------------------------------------------------------------
-vim.g.netrw_keepdir = 0 -- Keeps the current dir and browsing dir in sync
-vim.g.netrw_winsize = 30
-vim.g.netrw_banner = 0 -- Hides the banner
-vim.g.netrw_localcopydircmd = 'cp -r' -- Allows for recursive copying of dirs.
-vim.cmd[[hi! link netrwMarkFile Search]] -- Highlights marked files
 
 -- Swap Files and Undo History -------------------------------------------------
 vim.opt.swapfile = false
@@ -41,18 +54,3 @@ vim.g.completion_enable_fuzzy_match = 1
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.wildmenu = true
 
--- Miscellaneous ---------------------------------------------------------------
-vim.opt.exrc = true -- sources init.lua if present in the current working dir.
-
-vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
-
-vim.opt.scrolloff = 8
-vim.opt.wrap = false
-
-vim.g.NERDTreeMapCustomOpen = "L"
-vim.g.NERDTreeMinimalUI = 1 -- Removes the help prompt
-vim.g.NERDTreeMapChangeRoot = "l"
-vim.g.NERDTreeMapUpdir = "h"
-
--- Typescript formatting using Neoformat
-vim.g.neoformat_try_node_exe = 1
