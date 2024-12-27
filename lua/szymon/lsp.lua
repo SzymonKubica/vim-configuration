@@ -21,14 +21,17 @@ require("copilot").setup({
 })
 
 -- Global mappings for all lsp clients.
-local on_attach = function()
+local on_attach = function(client, bufnr)
   -- Mappings applicable to all buffers.
   nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
   nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
   nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
   nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  nnoremap('hh', '<cmd>lua vim.lsp.inlay_hint.enable(false, {bufnr = '.. bufnr ..'})<CR>')
+  nnoremap('hs', '<cmd>lua vim.lsp.inlay_hint.enable(true, {bufnr = '.. bufnr ..'})<CR>')
   nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
   inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+
 end
 
 
@@ -106,7 +109,7 @@ vim.g.rustaceanvim = {
   server = {
     on_attach = function(client, bufnr)
         vim.lsp.inlay_hint.enable(true, {bufnr = bufnr})
-        on_attach()
+        on_attach(client, bufnr)
     end,
 
     --Trying to set it so that the rust analyzer works on esp32 targets.
