@@ -36,7 +36,7 @@ end
 
 
 -- Enable language servers with the additional completion features from nvim-cmp
-local servers = { 'clangd', 'pyright', 'tsserver', 'hls', 'lua_ls', 'texlab', 'solidity_ls_nomicfoundation' }
+local servers = { 'clangd', 'pyright', 'ts_ls', 'hls', 'lua_ls', 'texlab', 'solidity_ls_nomicfoundation', 'arduino_language_server' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -88,6 +88,28 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+-- Setup instructions taken from here: https://github.com/arduino/arduino-language-server/pull/199#issuecomment-2519818108
+require('lspconfig').arduino_language_server.setup {
+    cmd = {
+        "/home/szymon/.local/share/nvim/mason/bin/arduino-language-server",
+        "-clangd", "/home/szymon/.local/share/nvim/mason/bin/clangd",
+        "-cli", "/usr/bin/arduino-cli",
+        "-cli-config", "/home/szymon/.arduino15/arduino-cli.yaml",
+        "-fqbn", "arduino:renesas_uno:unor4wifi"
+    },
+    root_dir = lspconfig.util.root_pattern("*.ino"),
+    filetypes = { "arduino" },
+    autostart = true,
+    log_level = vim.lsp.protocol.MessageType.Log,
+    settings = {
+        arduino_language_server = {
+            log = {
+                verbosity = "debug"
+            }
+        }
+    }
+}
 
 -- Lean and Elixir require some custom configuration and so they
 -- are configured separately.

@@ -29,6 +29,27 @@
 	'nvim-telescope/telescope-ui-select.nvim',
 	'nvim-lua/plenary.nvim', -- Dependency for telescope
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  {'williamboman/mason.nvim',
+  build = ":MasonUpdate",
+  config = function()
+    require("mason").setup()
+  end
+},
+{
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = {
+    'williamboman/mason.nvim',
+  },
+  config = function()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        'arduino_language_server',
+        -- We need to install clangd for arduino_language_server to work
+        'clangd'
+      }
+    })
+  end
+},
 	'mbbill/undotree',
 	'ellisonleao/gruvbox.nvim',
 	'neovim/nvim-lspconfig',
