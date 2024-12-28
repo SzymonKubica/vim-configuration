@@ -100,7 +100,7 @@ require('lspconfig').arduino_language_server.setup {
         "-fqbn", "arduino:renesas_uno:unor4wifi"
     },
     root_dir = lspconfig.util.root_pattern("*.ino"),
-    filetypes = { "arduino" },
+    filetypes = { "arduino", "cpp" },
     autostart = true,
     log_level = vim.lsp.protocol.MessageType.Log,
     settings = {
@@ -109,7 +109,8 @@ require('lspconfig').arduino_language_server.setup {
                 verbosity = "debug"
             }
         }
-    }
+    },
+    capabilities = {}
 }
 
 -- Lean and Elixir require some custom configuration and so they
