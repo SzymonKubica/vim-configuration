@@ -91,6 +91,7 @@ end
 
 -- Setup instructions taken from here: https://github.com/arduino/arduino-language-server/pull/199#issuecomment-2519818108
 require('lspconfig').arduino_language_server.setup {
+    on_attach = on_attach,
     cmd = {
         "/home/szymon/.local/share/nvim/mason/bin/arduino-language-server",
         "-clangd", "/home/szymon/.local/share/nvim/mason/bin/clangd",
