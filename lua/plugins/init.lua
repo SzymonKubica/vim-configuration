@@ -26,6 +26,7 @@
     end
   },
 	'nvim-telescope/telescope.nvim',
+	'nvim-telescope/telescope-ui-select.nvim',
 	'nvim-lua/plenary.nvim', -- Dependency for telescope
   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	'mbbill/undotree',

@@ -27,8 +27,8 @@ local on_attach = function(client, bufnr)
   nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
   nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
   nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-  nnoremap('hh', '<cmd>lua vim.lsp.inlay_hint.enable(false, {bufnr = '.. bufnr ..'})<CR>')
-  nnoremap('hs', '<cmd>lua vim.lsp.inlay_hint.enable(true, {bufnr = '.. bufnr ..'})<CR>')
+  nnoremap('Hh', '<cmd>lua vim.lsp.inlay_hint.enable(false, {bufnr = '.. bufnr ..'})<CR>')
+  nnoremap('Hs', '<cmd>lua vim.lsp.inlay_hint.enable(true, {bufnr = '.. bufnr ..'})<CR>')
   nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
   inoremap('<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
@@ -215,3 +215,16 @@ cmp.setup {
     end,
   },
 }
+-- Set up Telescope to handle code actions selections
+require("telescope").setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    }
+  }
+}
+-- To get ui-select loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require("telescope").load_extension("ui-select")
