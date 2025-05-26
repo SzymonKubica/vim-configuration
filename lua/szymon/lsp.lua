@@ -23,10 +23,10 @@ require("copilot").setup({
 -- Global mappings for all lsp clients.
 local on_attach = function(client, bufnr)
   -- Mappings applicable to all buffers.
-  nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
   nnoremap('K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
-  nnoremap('gD', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  nnoremap('<leader>fi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  nnoremap('gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+  nnoremap('<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
   nnoremap('Hh', '<cmd>lua vim.lsp.inlay_hint.enable(false, {bufnr = '.. bufnr ..'})<CR>')
   nnoremap('Hs', '<cmd>lua vim.lsp.inlay_hint.enable(true, {bufnr = '.. bufnr ..'})<CR>')
   nnoremap('<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>')
@@ -74,11 +74,12 @@ for _, lsp in ipairs(servers) do
           'clangd',
           '--background-index',
           '-j=12',
-          '--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++',
+          '--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++,/home/szymon/.arduino15/**/*',
           '--clang-tidy',
           '--clang-tidy-checks=*',
           '--all-scopes-completion',
           '--cross-file-rename',
+          '--enable-config',
           '--completion-style=detailed',
           '--header-insertion-decorators',
           '--header-insertion=iwyu',
@@ -97,12 +98,13 @@ require('lspconfig').arduino_language_server.setup {
         "-clangd", "/home/szymon/.local/share/nvim/mason/bin/clangd",
         "-cli", "/usr/bin/arduino-cli",
         "-cli-config", "/home/szymon/.arduino15/arduino-cli.yaml",
-        "-fqbn", "arduino:renesas_uno:unor4wifi"
+        "-fqbn", "arduino:renesas_uno:minima",
     },
     root_dir = lspconfig.util.root_pattern("*.ino"),
-    filetypes = { "arduino", "cpp" },
+    filetypes = { "arduino" },
     autostart = true,
     log_level = vim.lsp.protocol.MessageType.Log,
+    disabledFeatures = { "semanticTokens" },
     settings = {
         arduino_language_server = {
             log = {
