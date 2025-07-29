@@ -65,7 +65,7 @@ nnoremap("<leader>o", "<cmd> lua MaximizeCurrentBuffer() <CR><C-w>v <cmd> e blan
 
 nnoremap("<leader><Esc>", "<cmd> qa <CR>")
 
-inoremap("ii", "<Esc>") -- Allows for quickly exiting insert mode.
+inoremap("jk", "<Esc>") -- Allows for quickly exiting insert mode.
 
 -- Centers the cursor after <C-u> and <C-d>
 nnoremap("<C-d>", "<C-d>zz")
