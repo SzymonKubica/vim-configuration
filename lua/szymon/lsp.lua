@@ -14,14 +14,14 @@ vim.o.updatetime = 250
 --===[ Common keybindings for all LSP clients ]===--
 local on_attach = function(client, bufnr)
 	-- Mappings applicable to all buffers.
-	nnoremap("K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
-	nnoremap("<leader>fi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-	nnoremap("gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-	nnoremap("<leader>fr", "<cmd>lua vim.lsp.buf.references()<CR>")
+	nnoremap("K", vim.lsp.buf.hover)
+	nnoremap("<leader>fi", vim.lsp.buf.implementation)
+	nnoremap("gd", vim.lsp.buf.definition)
+	nnoremap("<leader>fr", vim.lsp.buf.references)
 	nnoremap("Hh", "<cmd>lua vim.lsp.inlay_hint.enable(false, {bufnr = " .. bufnr .. "})<CR>")
 	nnoremap("Hs", "<cmd>lua vim.lsp.inlay_hint.enable(true, {bufnr = " .. bufnr .. "})<CR>")
-	nnoremap("<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-	inoremap("<C-i>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+	nnoremap("<leader>a", vim.lsp.buf.code_action)
+	inoremap("<C-i>", vim.lsp.buf.signature_help)
 end
 
 --===[ Default LSP Config Setup ]===--
@@ -200,7 +200,6 @@ cmp.setup({
 		{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
 		{ name = "luasnip" },
 		{ name = "ultisnips" },
-		{ name = "copilot", group_index = 2 },
 		{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
 		{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
 		{ name = "buffer", keyword_length = 2 }, -- source current buffer
@@ -215,7 +214,6 @@ cmp.setup({
 				vsnip = "⋗",
 				buffer = "Ω",
 				path = "..",
-				copilot = "🤖",
 			}
 			item.menu = menu_icon[entry.source.name]
 			return item
