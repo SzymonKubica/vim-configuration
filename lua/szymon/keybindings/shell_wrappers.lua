@@ -1,4 +1,4 @@
-local nnoremap_silent = require("keybindings.keymap_util").nnoremap_silent
+local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silent
 
 --===[ Shell-wrapper Keybindings ]===--
 -- Make the current file executable.

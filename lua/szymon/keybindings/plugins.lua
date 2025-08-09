@@ -5,18 +5,25 @@ local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silen
 local inoremap_silent = require("szymon.keybindings.keymap_util").inoremap_silent
 local xnoremap_silent = require("szymon.keybindings.keymap_util").xnoremap_silent
 
+
 --===[ Custom function wrappers for NERDTree ]===--
+-- Module table for wrapper functions.
+local M = {}
 
 --[[ I had to reimplement the toggling functionality because the default one
      would shift the width of the main buffer when having it centered.
      This variable maintains the current state of the tree viewer (open/closed).]]
 local NERD_TREE_OPEN = false
+local FOCUS_MODE_ENABLED, enable_focus_mode
 
 --[[ Wraps around NERDTreeClose while maintaining the information on open/close
      state of the tree. ]]
-function FileTreeToggle()
+local function file_tree_toggle()
 	if NERD_TREE_OPEN then
 		vim.cmd([[ NERDTreeClose ]])
+    if FOCUS_MODE_ENABLED then
+      enable_focus_mode()
+    end
 		NERD_TREE_OPEN = false
 	else
 		vim.cmd([[ NERDTreeFocus ]])
@@ -26,7 +33,7 @@ end
 
 --[[ Wraps around NERDTreeFocus while maintaining the information on open/close
      state of the tree. ]]
-function FileTreeJump()
+local function file_tree_jump()
 	if NERD_TREE_OPEN then
 		vim.cmd([[ NERDTreeFocus ]])
 	end
@@ -34,38 +41,101 @@ end
 
 --[[ Wraps around NERDTreeFind while maintaining the information on open/close
      state of the tree. ]]
-function FileTreeFind()
+local function file_tree_find()
 	vim.cmd([[ NERDTreeFind ]])
 	NERD_TREE_OPEN = true
 end
 
 --[[ Maximizes the current buffer and ensures that NERDTree is closed. ]]
-function MaximizeCurrentBuffer()
+local function maximize_current_buffer()
 	vim.cmd([[ only ]])
 	NERD_TREE_OPEN = false
 end
 
+M.file_tree_toggle = file_tree_toggle
+M.file_tree_find = file_tree_find
+M.file_tree_jump = file_tree_jump
+M.maximize_current_buffer = maximize_current_buffer
+
 --=[ NERDTree keybindings ]=--
+nnoremap("<leader>sd", file_tree_toggle)
+nnoremap("<leader>sf", file_tree_find)
+nnoremap("<leader>sj", file_tree_jump)
+nnoremap("<leader>m", maximize_current_buffer)
 
-nnoremap("<leader>sd", FileTreeToggle)
-nnoremap("<leader>sf", FileTreeFind)
-nnoremap("<leader>sj", FileTreeJump)
-nnoremap("<leader>m", MaximizeCurrentBuffer)
 
--- This is currently not necessary, as the editor behaves as expected, we'll need
--- however this note remains should it break in the future. and I need to go back
--- and fix it.
+--=[ Focus Mode ]=--
 --[[ Focus mode means that the code is centered on the screen (I need this as
      my main monitor is wide and the head hurts if the code is on the left).
      This is achieved by adding a blank window of size 40 to the left of the
      main code buffer. The problem is that after closing NERDTree this
      can get misaligned, so we need to track the state of the focus mode and
-     'refocus' after closing NERDTree.]]
-local FOCUS_MODE_ENABLED = false
+     'refocus' after closing NERDTree. This feature is coupled with the state
+     of NERDTree window, so we define this setup in this file.]]
+FOCUS_MODE_ENABLED = false
 
--- Enters centered mode on big monitor
--- Need to open and close nerdtree to avoid misalignments
-nnoremap("<leader>o", "<cmd> lua MaximizeCurrentBuffer() <CR><C-w>v <cmd> e blank <CR><C-w>l <C-w>40>")
+function enable_focus_mode()
+		maximize_current_buffer()
+		local v_split = vim.api.nvim_replace_termcodes("<C-w>v", true, false, true)
+		vim.api.nvim_feedkeys(v_split, "n", true)
+    -- We need to schedule to ensure that the `e blank` command happens only
+    -- after the v-split is created.
+		vim.schedule(function()
+			vim.cmd("e blank")
+      -- The new blank buffer is spawned on the right, we need to swap the two buffers
+      -- to put it on the left
+			local swap_buffers = vim.api.nvim_replace_termcodes("<C-w>H", true, false, true)
+			vim.api.nvim_feedkeys(swap_buffers, "n", true)
+      -- Now we resize the current 'left' buffer to ensure the one on the right
+      -- is 'centered'.
+			local align = vim.api.nvim_replace_termcodes("<C-w>40<<C-w>l", true, false, true)
+			vim.api.nvim_feedkeys(align, "n", true)
+		end)
+    FOCUS_MODE_ENABLED = true
+end
+
+local function toggle_focus_mode()
+	if FOCUS_MODE_ENABLED then
+		FOCUS_MODE_ENABLED = false
+    maximize_current_buffer()
+	else
+		FOCUS_MODE_ENABLED = true
+    enable_focus_mode()
+	end
+end
+
+--[[ Enters centered mode on big monitor.
+     Need to open and close nerdtree to avoid misalignments ]]
+nnoremap(
+	"<leader>o",
+  toggle_focus_mode
+)
+
+
+
+local api = vim.api
+
+local function fit_buffer()
+	local buf = api.nvim_get_current_buf()
+	local lines = api.nvim_buf_get_lines(buf, 0, -1, false)
+
+	-- Get max display width of all lines
+	local max_width = 0
+	for _, line in ipairs(lines) do
+		local width = vim.fn.strdisplaywidth(line)
+		max_width = math.max(max_width, width)
+	end
+
+	-- Get total number of lines
+	local height = #lines
+
+	-- Resize the window
+	local win = api.nvim_get_current_win()
+	api.nvim_win_set_width(win, max_width)
+	--api.nvim_win_set_height(win, height)
+end
+
+nnoremap("<leader>fc", fit_buffer)
 
 --===[ UndoTree Keybindings ]===--
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
@@ -87,3 +157,6 @@ nnoremap("<leader>td", "<cmd>lua require('telescope.builtin').grep_string({ sear
 inoremap_silent("<F2>", '<cmd>lua require("renamer").rename()<cr>')
 nnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 xnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
+
+-- We make the NERTTree wrapper functions globally available from this module.
+return M

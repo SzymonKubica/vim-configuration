@@ -1,5 +1,4 @@
--- keymap.lua defines utilities to make remapping keys easier.
-
+-- Defines utilities to make remapping keys easier.
 local M = {}
 
 local function bind(op, outer_opts)
