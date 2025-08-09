@@ -41,3 +41,21 @@ vnoremap("K", ":m '<-2<CR>gv=gv")
 -- Invokes file formattting.
 nnoremap("<leader>fo", "<cmd>Neoformat <CR>")
 
+--=[ Layout Keybindings ]=--
+local api = vim.api
+local function fit_buffer_width()
+	local buf = api.nvim_get_current_buf()
+	local lines = api.nvim_buf_get_lines(buf, 0, -1, false)
+	-- Get max display width of all lines
+	local max_width = 0
+	for _, line in ipairs(lines) do
+		local width = vim.fn.strdisplaywidth(line)
+		max_width = math.max(max_width, width)
+	end
+
+	-- Resize the window
+	local win = api.nvim_get_current_win()
+	api.nvim_win_set_width(win, max_width)
+end
+
+nnoremap("<leader>fc", fit_buffer_width)

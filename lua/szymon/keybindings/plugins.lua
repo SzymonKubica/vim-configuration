@@ -1,4 +1,4 @@
--- remap.lua specifies all keybindings.
+--===[ Plugin-specific Keybindings ]===--
 
 local nnoremap = require("szymon.keybindings.keymap_util").nnoremap
 local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silent
@@ -47,7 +47,9 @@ end
 
 --[[ Maximizes the current buffer and ensures that NERDTree is closed. ]]
 local function maximize_current_buffer()
-	vim.cmd([[ only ]])
+	if vim.fn.winnr("$") > 1 then
+		vim.cmd([[ only ]])
+	end
 	NERD_TREE_OPEN = false
 end
 
@@ -77,9 +79,9 @@ function enable_focus_mode()
 	--[[This creates a new blank buffer to the left of the current the width
       is specified to roughly center the original buffer. ]]
 	local spawn_buffer = "<cmd>vsp blank | vertical resize 120<CR>"
-  local move_focus_back = "<C-w>l"
-  local full_command = spawn_buffer .. move_focus_back
-  local command = vim.api.nvim_replace_termcodes(full_command, true, false, true)
+	local move_focus_back = "<C-w>l"
+	local full_command = spawn_buffer .. move_focus_back
+	local command = vim.api.nvim_replace_termcodes(full_command, true, false, true)
 	vim.api.nvim_feedkeys(command, "n", true)
 	FOCUS_MODE_ENABLED = true
 end
@@ -97,30 +99,6 @@ end
 --[[ Enters centered mode on big monitor.
      Need to open and close nerdtree to avoid misalignments ]]
 nnoremap("<leader>o", toggle_focus_mode)
-
-local api = vim.api
-
-local function fit_buffer()
-	local buf = api.nvim_get_current_buf()
-	local lines = api.nvim_buf_get_lines(buf, 0, -1, false)
-
-	-- Get max display width of all lines
-	local max_width = 0
-	for _, line in ipairs(lines) do
-		local width = vim.fn.strdisplaywidth(line)
-		max_width = math.max(max_width, width)
-	end
-
-	-- Get total number of lines
-	local height = #lines
-
-	-- Resize the window
-	local win = api.nvim_get_current_win()
-	api.nvim_win_set_width(win, max_width)
-	api.nvim_win_set_height(win, height)
-end
-
-nnoremap("<leader>fc", fit_buffer)
 
 --===[ UndoTree Keybindings ]===--
 nnoremap("<F5>", "<cmd>UndotreeToggle<CR>")
