@@ -1,6 +1,5 @@
 function! NERDTreeMapping()
 	nmap <buffer> n ma
-  nmap <buffer> rm Vd
   nmap <buffer> l o
   nmap <buffer> h x
   nmap <buffer> H X
@@ -15,3 +14,6 @@ augroup nerdtree_mapping
   autocmd!
   autocmd filetype nerdtree call NERDTreeMapping()
 augroup END
+
+" Ensures that NERDTree doesn't display the help prompt
+let NERDTreeMinimalUI = 1

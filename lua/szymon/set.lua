@@ -1,5 +1,7 @@
 -- set.lua contains all general vim settings.
 
+vim.g.mapleader = " " -- The leader key is the one that triggers a keybinding.
+
 -- Line Numbers Settings -------------------------------------------------------
 vim.opt.relativenumber = true
 vim.opt.nu = true -- Shows the current line number instead of 0.
@@ -19,15 +21,6 @@ vim.opt.hidden = true -- keeps files open even if the buffer is not visible.
 
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
-
-vim.cmd[[let NERDTreeMapCustomOpen='L']]
-vim.cmd[[let NERDTreeMapUpdir='h']]
-vim.cmd[[let NERDTreeMapChangeRoot='l']]
-
--- vim.g.NERDTreeMapCustomOpen = 'L'
-vim.g.NERDTreeMinimalUI = 1 -- Removes the help prompt
--- vim.g.NERDTreeMapChangeRoot = 'l'
--- vim.g.NERDTreeMapUpdir = "h"
 
 -- Typescript formatting using Neoformat
 vim.g.neoformat_try_node_exe = 1

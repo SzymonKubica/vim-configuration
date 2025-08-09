@@ -1,7 +1,11 @@
 -- init.lua includes all configuration dependencies.
 require("szymon.lazy")
-require("szymon.remap")
+
+-- Important to load set before keybindings as it configures the leader key.
 require("szymon.set")
+require("szymon.keybindings.editor")
+require("szymon.keybindings.plugins")
+require("szymon.keybindings.shell_wrappers")
 require("szymon.autocmd")
 require("szymon.lsp")
 

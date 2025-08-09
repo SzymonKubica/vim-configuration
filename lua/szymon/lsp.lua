@@ -1,7 +1,8 @@
 -- Add additional capabilities supported by nvim-cmp
 
-local nnoremap = require('szymon.keymap').nnoremap
-local inoremap = require('szymon.keymap').inoremap
+local nnoremap = require('szymon.keybindings.keymap_util').nnoremap
+local inoremap = require('szymon.keybindings.keymap_util').inoremap
+local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silent
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local lspconfig = require 'lspconfig'
 local luasnip = require 'luasnip'
@@ -19,6 +20,12 @@ require("copilot").setup({
   suggestion = { enabled = false },
   panel = { enabled = false },
 })
+
+--===[ Diagnostics Keybindings ]===--
+nnoremap_silent("<leader>q", vim.diagnostic.open_float)
+nnoremap_silent("[d", vim.diagnostic.goto_prev)
+nnoremap_silent("]d", vim.diagnostic.goto_next)
+nnoremap_silent("<leader>l", vim.diagnostic.setloclist)
 
 -- Global mappings for all lsp clients.
 local on_attach = function(client, bufnr)
