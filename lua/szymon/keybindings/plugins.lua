@@ -74,7 +74,11 @@ function enable_focus_mode()
 	maximize_current_buffer()
 	--[[This creates a new blank buffer to the left of the current the width
       is specified to roughly center the original buffer. ]]
-	local spawn_buffer = "<cmd>vsp blank | vertical resize 120<CR>"
+
+	local width = vim.o.columns;
+  local default_buffer_width = 80;
+  local centering_margin = (width - default_buffer_width) / 2;
+	local spawn_buffer = string.format("<cmd>vsp blank | vertical resize %d<CR>", centering_margin)
 	local move_focus_back = "<C-w>l"
 	local full_command = spawn_buffer .. move_focus_back
 	local command = vim.api.nvim_replace_termcodes(full_command, true, false, true)
