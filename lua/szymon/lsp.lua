@@ -1,5 +1,3 @@
--- Add additional capabilities supported by nvim-cmp
-
 local nnoremap = require("szymon.keybindings.keymap_util").nnoremap
 local inoremap = require("szymon.keybindings.keymap_util").inoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()

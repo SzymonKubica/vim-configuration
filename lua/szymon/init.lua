@@ -1,4 +1,4 @@
--- init.lua includes all configuration dependencies.
+--===[ Main Configuation Entrypoint ]===--
 require("szymon.lazy")
 
 -- Important to load set before keybindings as it configures the leader key.

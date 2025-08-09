@@ -25,23 +25,21 @@ local treesitter = { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }
 
 return {
 	-- Adds ability for auto-closing brackets, quotes, etc.
-  {'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true},
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	nvim_surround,
 	renamer,
-  treesitter,
-  -- Provides ability to quickly switch between buffers by fuzzy searching.
+	treesitter,
+	-- Provides ability to quickly switch between buffers by fuzzy searching.
 	"nvim-telescope/telescope.nvim",
-  -- Dependency for Telescope.
+	-- Dependency for Telescope.
 	"nvim-lua/plenary.nvim",
-  -- Allows for using telescope as a UI select menu e.g. for LSP code actions.
+	-- Allows for using telescope as a UI select menu e.g. for LSP code actions.
 	"nvim-telescope/telescope-ui-select.nvim",
-  -- Allows for quickly jumping between a set of four files tied to keys.
+	-- Allows for quickly jumping between a set of four files tied to keys.
 	"theprimeagen/harpoon",
-  --[[ Provides a history tree of undo/redo actions allowing to get into
+	--[[ Provides a history tree of undo/redo actions allowing to get into
        history places that are not reachable with the default undo/redo. ]]
 	"mbbill/undotree",
-  -- Provides Git integration for Neovim.
+	-- Provides Git integration for Neovim.
 	"tpope/vim-fugitive",
 }
