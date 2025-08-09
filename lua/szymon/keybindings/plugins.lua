@@ -75,9 +75,9 @@ function enable_focus_mode()
 	--[[This creates a new blank buffer to the left of the current the width
       is specified to roughly center the original buffer. ]]
 
-	local width = vim.o.columns;
-  local default_buffer_width = 80;
-  local centering_margin = (width - default_buffer_width) / 2;
+	local width = vim.o.columns
+	local default_buffer_width = 80
+	local centering_margin = (width - default_buffer_width) / 2
 	local spawn_buffer = string.format("<cmd>vsp blank | vertical resize %d<CR>", centering_margin)
 	local move_focus_back = "<C-w>l"
 	local full_command = spawn_buffer .. move_focus_back
@@ -121,7 +121,5 @@ inoremap_silent("<F2>", '<cmd>lua require("renamer").rename()<cr>')
 nnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 xnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 
-
 --===[ Fugitive Keybindings ]===--
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
-
