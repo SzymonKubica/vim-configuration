@@ -1,4 +1,4 @@
--- Treesitter Configuration ----------------------------------------------------
+--===[ Treesitter Configuration ]===--
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "cpp", "typescript", "lua", "rust", "python", "java", "haskell", "latex", "elixir", "heex", "eex"},

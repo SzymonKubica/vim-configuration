@@ -1,3 +1,4 @@
+" NERDTree using Vimscript
 function! NERDTreeMapping()
 	nmap <buffer> n ma
   nmap <buffer> l o

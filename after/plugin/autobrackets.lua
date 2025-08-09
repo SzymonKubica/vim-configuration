@@ -1,3 +1,4 @@
+--===[ autoclose Plugin Configuration ]===--
 require("autoclose").setup({
    keys = {
       ["'"] = { escape = false, close = false },

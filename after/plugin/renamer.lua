@@ -1,4 +1,4 @@
--- Renamer Configuration -------------------------------------------------------
+--===[ Renamer Configuration  ]===--
 local mappings_utils = require('renamer.mappings.utils')
 require('renamer').setup {
     -- The popup title, shown if `border` is true

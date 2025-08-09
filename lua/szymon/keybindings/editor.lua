@@ -2,6 +2,7 @@ local nnoremap = require("szymon.keybindings.keymap_util").nnoremap
 local vnoremap = require("szymon.keybindings.keymap_util").vnoremap
 local inoremap = require("szymon.keybindings.keymap_util").inoremap
 local xnoremap = require("szymon.keybindings.keymap_util").xnoremap
+local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silent
 
 --===[ Editor Keybindings ]===--
 
@@ -59,3 +60,9 @@ local function fit_buffer_width()
 end
 
 nnoremap("<leader>fc", fit_buffer_width)
+
+--===[ Diagnostics Keybindings ]===--
+nnoremap_silent("<leader>q", vim.diagnostic.open_float)
+nnoremap_silent("[d", vim.diagnostic.goto_prev)
+nnoremap_silent("]d", vim.diagnostic.goto_next)
+nnoremap_silent("<leader>l", vim.diagnostic.setloclist)

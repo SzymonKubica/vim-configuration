@@ -6,13 +6,14 @@ local inoremap_silent = require("szymon.keybindings.keymap_util").inoremap_silen
 local xnoremap_silent = require("szymon.keybindings.keymap_util").xnoremap_silent
 
 --===[ Custom function wrappers for NERDTree ]===--
--- Module table for wrapper functions.
-local M = {}
 
 --[[ I had to reimplement the toggling functionality because the default one
      would shift the width of the main buffer when having it centered.
      This variable maintains the current state of the tree viewer (open/closed).]]
 local NERD_TREE_OPEN = false
+
+-- Forward declaration of the function and state that couples the nerd tree
+-- view state and the focus mode.
 local FOCUS_MODE_ENABLED, enable_focus_mode
 
 --[[ Wraps around NERDTreeClose while maintaining the information on open/close
@@ -52,11 +53,6 @@ local function maximize_current_buffer()
 	end
 	NERD_TREE_OPEN = false
 end
-
-M.file_tree_toggle = file_tree_toggle
-M.file_tree_find = file_tree_find
-M.file_tree_jump = file_tree_jump
-M.maximize_current_buffer = maximize_current_buffer
 
 --=[ NERDTree keybindings ]=--
 nnoremap("<leader>sd", file_tree_toggle)
@@ -121,5 +117,7 @@ inoremap_silent("<F2>", '<cmd>lua require("renamer").rename()<cr>')
 nnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 xnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 
--- We make the NERTTree wrapper functions globally available from this module.
-return M
+
+--===[ Fugitive Keybindings ]===--
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
