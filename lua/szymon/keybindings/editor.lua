@@ -66,3 +66,11 @@ nnoremap_silent("<leader>q", vim.diagnostic.open_float)
 nnoremap_silent("[d", vim.diagnostic.goto_prev)
 nnoremap_silent("]d", vim.diagnostic.goto_next)
 nnoremap_silent("<leader>l", vim.diagnostic.setloclist)
+
+--===[ Messy overrides ]===--
+
+--[[ In some cases copilot suggestions eat the <ESC> key and so we need to
+     hit it twice to exit insert mode. This is a workaround for that. Looks like
+     this overridea all other <Esc> keybindings that copilot plugin might
+     be setting. ]]
+inoremap("<Esc>", "<Esc>")
