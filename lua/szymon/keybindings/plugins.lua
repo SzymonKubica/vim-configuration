@@ -5,7 +5,6 @@ local nnoremap_silent = require("szymon.keybindings.keymap_util").nnoremap_silen
 local inoremap_silent = require("szymon.keybindings.keymap_util").inoremap_silent
 local xnoremap_silent = require("szymon.keybindings.keymap_util").xnoremap_silent
 
-
 --===[ Custom function wrappers for NERDTree ]===--
 -- Module table for wrapper functions.
 local M = {}
@@ -21,9 +20,9 @@ local FOCUS_MODE_ENABLED, enable_focus_mode
 local function file_tree_toggle()
 	if NERD_TREE_OPEN then
 		vim.cmd([[ NERDTreeClose ]])
-    if FOCUS_MODE_ENABLED then
-      enable_focus_mode()
-    end
+		if FOCUS_MODE_ENABLED then
+			enable_focus_mode()
+		end
 		NERD_TREE_OPEN = false
 	else
 		vim.cmd([[ NERDTreeFocus ]])
@@ -63,7 +62,6 @@ nnoremap("<leader>sf", file_tree_find)
 nnoremap("<leader>sj", file_tree_jump)
 nnoremap("<leader>m", maximize_current_buffer)
 
-
 --=[ Focus Mode ]=--
 --[[ Focus mode means that the code is centered on the screen (I need this as
      my main monitor is wide and the head hurts if the code is on the left).
@@ -75,43 +73,30 @@ nnoremap("<leader>m", maximize_current_buffer)
 FOCUS_MODE_ENABLED = false
 
 function enable_focus_mode()
-		maximize_current_buffer()
-		local v_split = vim.api.nvim_replace_termcodes("<C-w>v", true, false, true)
-		vim.api.nvim_feedkeys(v_split, "n", true)
-    -- We need to schedule to ensure that the `e blank` command happens only
-    -- after the v-split is created.
-		vim.schedule(function()
-			vim.cmd("e blank")
-      -- The new blank buffer is spawned on the right, we need to swap the two buffers
-      -- to put it on the left
-			local swap_buffers = vim.api.nvim_replace_termcodes("<C-w>H", true, false, true)
-			vim.api.nvim_feedkeys(swap_buffers, "n", true)
-      -- Now we resize the current 'left' buffer to ensure the one on the right
-      -- is 'centered'.
-			local align = vim.api.nvim_replace_termcodes("<C-w>40<<C-w>l", true, false, true)
-			vim.api.nvim_feedkeys(align, "n", true)
-		end)
-    FOCUS_MODE_ENABLED = true
+	maximize_current_buffer()
+	--[[This creates a new blank buffer to the left of the current the width
+      is specified to roughly center the original buffer. ]]
+	local spawn_buffer = "<cmd>vsp blank | vertical resize 120<CR>"
+  local move_focus_back = "<C-w>l"
+  local full_command = spawn_buffer .. move_focus_back
+  local command = vim.api.nvim_replace_termcodes(full_command, true, false, true)
+	vim.api.nvim_feedkeys(command, "n", true)
+	FOCUS_MODE_ENABLED = true
 end
 
 local function toggle_focus_mode()
 	if FOCUS_MODE_ENABLED then
 		FOCUS_MODE_ENABLED = false
-    maximize_current_buffer()
+		maximize_current_buffer()
 	else
 		FOCUS_MODE_ENABLED = true
-    enable_focus_mode()
+		enable_focus_mode()
 	end
 end
 
 --[[ Enters centered mode on big monitor.
      Need to open and close nerdtree to avoid misalignments ]]
-nnoremap(
-	"<leader>o",
-  toggle_focus_mode
-)
-
-
+nnoremap("<leader>o", toggle_focus_mode)
 
 local api = vim.api
 
@@ -132,7 +117,7 @@ local function fit_buffer()
 	-- Resize the window
 	local win = api.nvim_get_current_win()
 	api.nvim_win_set_width(win, max_width)
-	--api.nvim_win_set_height(win, height)
+	api.nvim_win_set_height(win, height)
 end
 
 nnoremap("<leader>fc", fit_buffer)
