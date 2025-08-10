@@ -123,3 +123,6 @@ xnoremap_silent("<leader>rn", '<cmd>lua require("renamer").rename()<cr>')
 
 --===[ Fugitive Keybindings ]===--
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
+--===[ GDB Keybindings ]===--
+nnoremap("<leader>tb", "<cmd>GdbBreakpointToggle<cr>")

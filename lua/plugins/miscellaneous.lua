@@ -42,4 +42,6 @@ return {
 	"mbbill/undotree",
 	-- Provides Git integration for Neovim.
 	"tpope/vim-fugitive",
+  -- Adds gdb wrappers support
+  "sakhnik/nvim-gdb",
 }
