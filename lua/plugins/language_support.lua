@@ -1,6 +1,7 @@
 --===[ Plugins for dedicated language support ]===--
 return {
   --=[ C++ / Arduino ]=--
+  --[[
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
@@ -17,12 +18,11 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"arduino_language_server",
-					-- We need to install clangd for arduino_language_server to work
-					"clangd",
 				},
 			})
 		end,
 	},
+  --]]
   --=[ Rust ]=--
 	{
 		"mrcjkb/rustaceanvim",

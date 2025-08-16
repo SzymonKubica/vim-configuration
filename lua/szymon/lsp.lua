@@ -24,7 +24,6 @@ end
 
 --===[ Default LSP Config Setup ]===--
 local servers = {
-	"clangd",
 	"pyright",
 	"ts_ls",
 	"hls",
@@ -32,6 +31,7 @@ local servers = {
 	"texlab",
 	"solidity_ls_nomicfoundation",
 	"arduino_language_server",
+	"clangd",
 	"elixir-ls",
 }
 
